@@ -36,7 +36,7 @@ const TableAccount = () => {
         <div className="h-20 grid grid-cols-[max-content_1fr_1fr]">
           <input
             type="text"
-            className="w-8 px-2 border-b border-black"
+            className="w-8 px-1 border-b border-black"
             value={10}
             disabled
           />
