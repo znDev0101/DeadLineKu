@@ -27,7 +27,7 @@ const Note = () => {
   }
 
   return (
-    <div className="w-full mt-52 px-2 grid grid-cols-2 gap-x-1">
+    <div className="w-full mt-48 px-2 grid grid-cols-2 ">
       <textarea
         name="nama-jobs"
         className="w-full px-5 h-28  placeholder:text-sm placeholder:text-white text-white rounded-t-xl bg-[#288BFF]"

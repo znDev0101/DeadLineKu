@@ -29,7 +29,7 @@ const TimeDeadLine = () => {
           <h1 className="text-sm font-extralight text-[#1d1717]">Menit</h1>
           <h1 className="text-sm font-extralight text-[#1d1717]">Detik</h1>
         </div>
-        <FaRegPlayCircle className="mx-auto text-4xl my-2 hover:cursor-pointer" />
+        <FaRegPlayCircle className="mx-auto text-4xl hover:cursor-pointer" />
       </div>
     </div>
   )
