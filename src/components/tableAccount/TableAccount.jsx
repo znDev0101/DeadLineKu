@@ -1,61 +1,67 @@
 import React from "react"
+import {
+  MdDoneOutline,
+  MdOutlineContentCopy,
+  MdOutlineDeleteForever,
+} from "react-icons/md"
 
 const TableAccount = () => {
   return (
-    <div className="w-full px-2">
-      <div className="w-full ">
-        <div className="grid grid-cols-[max-content_1fr_1fr]  border border-black bg-black">
-          <div className="text-white w-8 px-2">
-            <span className="text-sm ">No.</span>
-          </div>
-          <div className="text-white text-center flex-1">
-            <span className="text-sm">NAMA AKUN</span>
-          </div>
-          <div className="text-white text-center flex-1">
-            <span className="text-sm">NO PEMBAYARAN:...</span>
-          </div>
+    <div className="w-full grid grid-cols-2 px-2">
+      <div className="text-center px-1 bg-black text-white relative">
+        <input
+          type="text"
+          className="bg-transparent ms-7 ps-2 w-[85%] placeholder:text-center"
+          placeholder="NAMA AKUN"
+        />
+        <div className="text-white absolute left-1 top-0">No.</div>
+      </div>
+      <div className="bg-black text-white">
+        <input
+          type="text"
+          className="bg-transparent ps-4 w-full"
+          placeholder="NO PEMBAYARAN:..."
+        />
+      </div>
+      <div className="h-16 text-center px-1  text-white relative border border-b-black">
+        <input
+          type="text"
+          className="h-full bg-transparent ms-7 ps-2 w-[85%] placeholder:text-center"
+          placeholder="KETIK DISINI..."
+        />
+        <div className="text-black absolute flex flex-col items-center w-8 left-0 top-0 pt-3 border border-r-black h-full">
+          <span>1.</span>
+          <MdDoneOutline className="text-[#148EFF]" />
         </div>
-        <div className="h-20 grid grid-cols-[max-content_1fr_1fr]">
-          <input
-            type="text"
-            className="w-8 px-2 border-b border-black"
-            defaultValue={1}
-            disabled
-          />
-          <input
-            type="text"
-            className="w-full placeholder:text-center px-2 border-l border-b border-black"
-            placeholder="Ketik Disini..."
-          />
-          <input
-            type="text"
-            className="w-full placeholder:text-center px-2 border-b border-l border-black"
-            placeholder="Ketik Disini..."
-          />
+      </div>
+      <div className="flex px-1 items-center text-white  border border-l-black border-b-black">
+        <MdOutlineContentCopy className="text-[#128DFF] text-2xl" />
+        <input
+          type="text"
+          className="h-full bg-transparent ps-4 w-full"
+          placeholder="KETIK DISINI..."
+        />
+        <MdOutlineDeleteForever className="text-[#FF0000] text-3xl" />
+      </div>
+      <div className="h-16 text-center px-1  text-white relative border border-b-black">
+        <input
+          type="text"
+          className="h-full bg-transparent ms-7 ps-2 w-[85%] placeholder:text-center"
+          placeholder="KETIK DISINI..."
+        />
+        <div className="text-black absolute flex flex-col items-center w-8 left-0 top-0 pt-3 border border-r-black h-full">
+          <span>10.</span>
+          <MdDoneOutline className="text-[#148EFF]" />
         </div>
-        <div className="h-20 grid grid-cols-[max-content_1fr_1fr]">
-          <input
-            type="text"
-            className="w-8 px-1 border-b border-black"
-            value={10}
-            disabled
-          />
-          <input
-            type="text"
-            className="w-full placeholder:text-center px-2 border-l border-b border-black"
-            placeholder="Ketik Disini..."
-          />
-          <input
-            type="text"
-            className="w-full placeholder:text-center px-2 border-b border-l border-black"
-            placeholder="Ketik Disini..."
-          />
-        </div>
-        <div className="bg-[#26BC00] w-full py-3 rounded-b-xl">
-          <div className="flex items-center justify-end px-5 text-white">
-            <span>Salin Semua</span>
-          </div>
-        </div>
+      </div>
+      <div className="flex px-1 items-center text-white  border border-l-black border-b-black">
+        <MdOutlineContentCopy className="text-[#128DFF] text-2xl" />
+        <input
+          type="text"
+          className="h-full bg-transparent ps-4 w-full"
+          placeholder="KETIK DISINI..."
+        />
+        <MdOutlineDeleteForever className="text-[#FF0000] text-3xl" />
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react"
-import TableAccount from "../tableAccount/TableAccount"
+import React, { useState, useEffect, useRef } from "react"
 import useAutoSizeTextArea from "../../hooks/useAutoSizeTextArea"
-const CatatanJobs = () => {
+
+const Note = () => {
   const [valueCatatan, setValueCatatan] = useState("")
   const [valueNamaJobs, setValueNamaJobs] = useState("")
   const firstTextAreaRef = useRef()
@@ -27,12 +27,10 @@ const CatatanJobs = () => {
   }
 
   return (
-    <div
-      className={`w-full h-36 grid grid-cols-2 gap-x-1 mt-52 px-2`}
-      ref={wrapperTextAreaRef}>
+    <div className="w-full mt-52 px-2 grid grid-cols-2 gap-x-1">
       <textarea
         name="nama-jobs"
-        className="w-full px-5  placeholder:text-sm placeholder:text-white text-white rounded-t-xl bg-[#288BFF]"
+        className="w-full px-5 h-28  placeholder:text-sm placeholder:text-white text-white rounded-t-xl bg-[#288BFF]"
         placeholder="Nama Jobs: Ketik Disini..."
         value={valueNamaJobs}
         rows={1}
@@ -41,15 +39,14 @@ const CatatanJobs = () => {
 
       <textarea
         name="nama-jobs"
-        className="w-full px-5  placeholder:text-sm placeholder:text-white text-white rounded-t-xl bg-pink-500 "
+        className="w-full px-5 h-28  placeholder:text-sm placeholder:text-white text-white rounded-t-xl bg-pink-500 "
         placeholder="Catatan: Ketik Disini..."
         value={valueCatatan}
         rows={1}
         onChange={handleChangeCatatan}
         ref={secondTextAreaRef}></textarea>
-      <TableAccount />
     </div>
   )
 }
 
-export default CatatanJobs
+export default Note
