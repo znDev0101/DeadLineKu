@@ -28,23 +28,28 @@ const Note = () => {
 
   return (
     <div className="w-full mt-48 px-2 grid grid-cols-2 ">
-      <textarea
-        name="nama-jobs"
-        className="w-full px-5 h-28  placeholder:text-sm placeholder:text-white text-white rounded-t-xl bg-[#288BFF]"
-        placeholder="Nama Jobs: Ketik Disini..."
-        value={valueNamaJobs}
-        rows={1}
-        onChange={handleChangeJobs}
-        ref={firstTextAreaRef}></textarea>
-
-      <textarea
-        name="nama-jobs"
-        className="w-full px-5 h-28  placeholder:text-sm placeholder:text-white text-white rounded-t-xl bg-pink-500 "
-        placeholder="Catatan: Ketik Disini..."
-        value={valueCatatan}
-        rows={1}
-        onChange={handleChangeCatatan}
-        ref={secondTextAreaRef}></textarea>
+      <div className="flex flex-col bg-[#288BFF] rounded-t-xl ">
+        <label className="ps-4 pt-2 text-white">NAMA JOBS:</label>
+        <textarea
+          name="nama-jobs"
+          className="w-full px-4 h-28 bg-transparent  placeholder:text-sm placeholder:text-white text-white focus-within:outline-none"
+          placeholder="Ketik Disini..."
+          value={valueNamaJobs}
+          rows={1}
+          onChange={handleChangeJobs}
+          ref={firstTextAreaRef}></textarea>
+      </div>
+      <div className="flex flex-col bg-[#FE41F6] rounded-t-xl">
+        <label className="ps-4 pt-2 text-white">CATATAN:</label>
+        <textarea
+          name="nama-jobs"
+          className="w-full px-4 h-28 bg-transparent  placeholder:text-sm placeholder:text-white text-white focus-within:outline-none  "
+          placeholder="Ketik Disini..."
+          value={valueCatatan}
+          rows={1}
+          onChange={handleChangeCatatan}
+          ref={secondTextAreaRef}></textarea>
+      </div>
     </div>
   )
 }
