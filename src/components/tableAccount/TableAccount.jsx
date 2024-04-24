@@ -125,7 +125,7 @@ const TableAccount = () => {
             </div>
           </>
         ) : (
-          new Array(parseInt(numberTable))?.fill("")?.map((_, i) => {
+          new Array(parseInt(numberTable - 1))?.fill("")?.map((_, i) => {
             return <NewTable key={i} index={i} />
           })
         )}

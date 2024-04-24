@@ -12,11 +12,13 @@ const NewTable = ({ index }) => {
   const handleDeleteNoPembayaran = () => {
     if (noPembayaran.length !== 0) {
       setNoPembayaran("")
-      console.log("test")
     }
   }
 
-  useEffect(() => {}, [noPembayaran])
+  const handleCopyNoPembayaran = () => {
+    if (noPembayaran.length !== 0) {
+    }
+  }
 
   return (
     <>
@@ -41,10 +43,13 @@ const NewTable = ({ index }) => {
             onChange={(e) => setNoPembayaran(e.target.value)}
           />
           <div className="flex items-center justify-between">
-            <MdOutlineContentCopy className="text-[#128DFF] text-2xl" />
+            <MdOutlineContentCopy
+              className="text-[#128DFF] text-2xl"
+              onClick={handleCopyNoPembayaran}
+            />
             <MdOutlineDeleteForever
               className="text-[#FF0000] text-3xl"
-              onclick={handleDeleteNoPembayaran}
+              onClick={handleDeleteNoPembayaran}
             />
           </div>
         </div>
