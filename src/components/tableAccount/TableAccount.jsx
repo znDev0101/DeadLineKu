@@ -5,6 +5,7 @@ import {
   MdOutlineDeleteForever,
 } from "react-icons/md"
 import { HiOutlineDotsHorizontal } from "react-icons/hi"
+import NewTable from "../newtable/NewTable"
 
 const TableAccount = () => {
   const [number, setNumber] = useState("")
@@ -15,7 +16,7 @@ const TableAccount = () => {
   useEffect(() => {
     const time = setTimeout(() => {
       setNumberTable(number)
-    }, 500)
+    }, 2000)
 
     return () => {
       clearTimeout(time)
@@ -125,34 +126,7 @@ const TableAccount = () => {
           </>
         ) : (
           new Array(parseInt(numberTable))?.fill("")?.map((_, i) => {
-            return (
-              <>
-                <div className="h-24 text-center px-1  text-white relative border border-b-black">
-                  <input
-                    type="text"
-                    className="h-full bg-transparent ms-7 ps-2 w-[85%] text-black placeholder:text-center"
-                    placeholder="KETIK DISINI..."
-                  />
-                  <div className="text-black absolute flex flex-col items-center w-8 left-0 top-0 pt-3 border border-r-black h-full">
-                    <span>{i + 2}</span>
-                    <MdDoneOutline className="text-[#148EFF]" />
-                  </div>
-                </div>
-                <div className="flex px-1 items-center text-white  border border-l-black border-b-black">
-                  <div className="grid grid-rows-[2fr_1fr]">
-                    <input
-                      type="text"
-                      className=" w-full h-full bg-transparent ps-4 text-black"
-                      placeholder="KETIK DISINI..."
-                    />
-                    <div className="flex items-center justify-between">
-                      <MdOutlineContentCopy className="text-[#128DFF] text-2xl" />
-                      <MdOutlineDeleteForever className="text-[#FF0000] text-3xl" />
-                    </div>
-                  </div>
-                </div>
-              </>
-            )
+            return <NewTable key={i} index={i} />
           })
         )}
       </div>
