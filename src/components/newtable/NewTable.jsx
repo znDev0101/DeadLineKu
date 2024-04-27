@@ -1,22 +1,51 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, forwardRef, useRef } from "react"
 
 import {
   MdDoneOutline,
   MdOutlineContentCopy,
   MdOutlineDeleteForever,
 } from "react-icons/md"
+import { toast, Bounce } from "react-toastify"
 
-const NewTable = ({ index }) => {
+import "react-toastify/dist/ReactToastify.css"
+
+const NewTable = forwardRef(({ index }, ref) => {
   const [noPembayaran, setNoPembayaran] = useState("")
+  const [namaAkun, setNamaAkun] = useState("")
+
+  // const newInputNamaAkunRef = useRef()
 
   const handleDeleteNoPembayaran = () => {
     if (noPembayaran.length !== 0) {
       setNoPembayaran("")
+      toast.success("berhasil di hapus 🗑️", {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      })
     }
   }
 
   const handleCopyNoPembayaran = () => {
     if (noPembayaran.length !== 0) {
+      navigator.clipboard.writeText(noPembayaran)
+      toast.success("copy success", {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      })
     }
   }
 
@@ -26,7 +55,11 @@ const NewTable = ({ index }) => {
         <input
           type="text"
           className="h-full bg-transparent ms-7 ps-2 w-[85%] text-black placeholder:text-center"
+          name="namaAkun"
           placeholder="KETIK DISINI..."
+          value={namaAkun}
+          onChange={(e) => setNamaAkun(e.target.value)}
+          ref={ref}
         />
         <div className="text-black absolute flex flex-col items-center w-8 left-0 top-0 pt-3 border border-r-black h-full">
           <span>{index + 2}</span>
@@ -56,6 +89,5 @@ const NewTable = ({ index }) => {
       </div>
     </>
   )
-}
-
+})
 export default NewTable
