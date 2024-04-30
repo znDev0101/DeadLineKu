@@ -51,7 +51,7 @@ const NewTable = forwardRef(({ index }, ref) => {
 
   return (
     <>
-      <div className="h-24 text-center px-1  text-white relative border border-b-black">
+      <div className="h-28 text-center px-1  text-white relative border border-b-black">
         <input
           type="text"
           className="h-full bg-transparent ms-7 ps-2 w-[85%] text-black placeholder:text-center"
@@ -77,11 +77,11 @@ const NewTable = forwardRef(({ index }, ref) => {
           />
           <div className="flex items-center justify-between">
             <MdOutlineContentCopy
-              className="text-[#128DFF] text-2xl"
+              className="text-[#128DFF] text-3xl"
               onClick={handleCopyNoPembayaran}
             />
             <MdOutlineDeleteForever
-              className="text-[#FF0000] text-3xl"
+              className="text-[#FF0000] text-4xl"
               onClick={handleDeleteNoPembayaran}
             />
           </div>
