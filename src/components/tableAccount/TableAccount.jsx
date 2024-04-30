@@ -64,7 +64,10 @@ const TableAccount = () => {
   }
 
   const handleDeleteNoPembayaran = () => {
-    if (noPembayaran.length !== 0) setNoPembayaran("")
+    if (noPembayaran.length !== 0 || namaAkun.length !== 0) {
+      setNoPembayaran("")
+      setNamaAkun("")
+    }
   }
 
   useEffect(() => {

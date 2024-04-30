@@ -16,8 +16,9 @@ const NewTable = forwardRef(({ index }, ref) => {
   // const newInputNamaAkunRef = useRef()
 
   const handleDeleteNoPembayaran = () => {
-    if (noPembayaran.length !== 0) {
+    if (noPembayaran.length !== 0 || namaAkun.length !== 0) {
       setNoPembayaran("")
+      setNamaAkun("")
       toast.success("berhasil di hapus 🗑️", {
         position: "top-center",
         autoClose: 1500,
