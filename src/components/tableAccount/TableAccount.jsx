@@ -12,8 +12,8 @@ import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer } from "react-toastify"
 
 const TableAccount = () => {
-  const [number, setNumber] = useState("")
-  const [numberTable, setNumberTable] = useState("")
+  const [number, setNumber] = useState(0)
+  const [numberTable, setNumberTable] = useState(0)
   const [namaAkun, setNamaAkun] = useState("")
   const [noPembayaran, setNoPembayaran] = useState("")
 
@@ -69,7 +69,7 @@ const TableAccount = () => {
 
   useEffect(() => {
     if (numberTable.length !== 0) {
-      for (let i = 1; i < parseInt(numberTable); i++) {
+      for (let i = 1; i < numberTable; i++) {
         newInputNamaAkunRef.current.push(React.createRef())
       }
     }
@@ -132,7 +132,7 @@ const TableAccount = () => {
           </div>
         </div>
 
-        {numberTable.length === 0 ? (
+        {numberTable === 0 ? (
           <>
             <div className="h-28 text-center px-1  text-white relative border border-b-black">
               <input
@@ -143,11 +143,11 @@ const TableAccount = () => {
               <div className="text-black absolute flex flex-col items-center w-8 left-0 top-0 pt-6 border border-r-black h-full">
                 <MdDoneOutline className="text-[#B2ADAD]" />
                 <input
-                  type="text"
+                  type="number"
+                  value={number === 0 ? "" : number}
                   placeholder="10"
                   className="placeholder:text-[#B2ADAD] text-center w-full"
-                  value={number}
-                  onChange={(e) => setNumber(parseInt(e.target.value))}
+                  onChange={(e) => setNumber(e.target.value)}
                 />
                 <HiOutlineDotsHorizontal className="placeholder:text-[#B2ADAD]" />
               </div>
@@ -167,6 +167,7 @@ const TableAccount = () => {
             </div>
           </>
         ) : (
+          numberTable !== 0 &&
           new Array(numberTable - 1).fill("")?.map((_, i) => {
             return (
               <NewTable
