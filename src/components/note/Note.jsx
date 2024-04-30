@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, useContext } from "react"
+import { MyContext } from "../../context/MyContext"
 // import useAutoSizeTextArea from "../../hooks/useAutoSizeTextArea"
 
-const Note = ({ startDeadLine }) => {
+const Note = () => {
   const [valueCatatan, setValueCatatan] = useState("")
   const [valueNamaJobs, setValueNamaJobs] = useState("")
   const firstTextAreaRef = useRef()
   const secondTextAreaRef = useRef()
   const wrapperTextAreaRef = useRef()
+
+  const { startDeadLine } = useContext(MyContext)
 
   // useAutoSizeTextArea(
   //   wrapperTextAreaRef.current,
