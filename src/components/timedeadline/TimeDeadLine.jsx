@@ -2,13 +2,9 @@ import React, { useState, useRef } from "react"
 import { FaRegPlayCircle } from "react-icons/fa"
 import CatatanJobs from "../catatanjobs/CatatanJobs"
 
-const TimeDeadLine = () => {
+const TimeDeadLine = ({ startDeadLine, setStartDeadLine }) => {
   const [isStart, setIsStart] = useState(false)
 
-  const [day, setDay] = useState("")
-  const [hours, setHours] = useState("")
-  const [minutes, setMinutes] = useState("")
-  const [second, setSecond] = useState("")
   const setDayRef = useRef()
   const setHoursRef = useRef()
   const setMinutesRef = useRef()
@@ -19,32 +15,49 @@ const TimeDeadLine = () => {
       <h1 className="w-max  bg-[#F2F8FF] py-2 font-bold px-20 pb-5 mx-auto mt-10 rounded-full ">
         DEADLINE
       </h1>
-      <div className=" absolute  top-7 left-3 right-3 bg-[#F2F8FF] rounded-md">
-        <div className="grid grid-cols-4 justify-center text-center mx-auto gap-x-2 -gap-y-5 px-10 mt-10">
-          {/* <h1 className="text-3xl font-extralight text-[#959494]">30</h1>
-          <h1 className="text-3xl font-extralight text-[#959494]">23</h1>
-          <h1 className="text-3xl font-extralight text-[#959494]">59</h1>
-          <h1 className="text-3xl font-extralight text-[#959494]">59</h1> */}
-
-          <div className="flex flex-col h-28  overflow-y-scroll">
-            <h1 className="text-3xl font-extralight text-[#959494]">30</h1>
-            <h1 className="text-3xl font-extralight text-[#959494]">30</h1>
-            <h1 className="text-3xl" ref={setDayRef}>
-              00
-            </h1>
-            <h1 className="text-3xl font-extralight text-[#959494]">01</h1>
-            <h1 className="text-3xl font-extralight text-[#959494]">01</h1>
+      <div className=" absolute top-7 left-3 right-3 bg-[#F2F8FF] rounded-md">
+        <div className="grid grid-cols-2 items-center justify-center text-center  gap-y-5  mt-10 ">
+          <div className="flex gap-x-10 mx-auto">
+            <div className="flex flex-col items-center gap-y-5">
+              <input
+                type="number"
+                placeholder="00"
+                className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
+              />
+              <label htmlFor="hari">Hari</label>
+            </div>
+            <div className="flex flex-col items-center gap-y-5">
+              <input
+                type="number"
+                placeholder="00"
+                className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
+              />
+              <label htmlFor="jam">Jam</label>
+            </div>
           </div>
-          <h1 className="text-3xl">00</h1>
-          <h1 className="text-3xl">00</h1>
-          <h1 className="text-3xl">00</h1>
-
-          <h1 className="text-sm font-extralight text-[#1d1717]">Hari</h1>
-          <h1 className="text-sm font-extralight text-[#1d1717]">Jam</h1>
-          <h1 className="text-sm font-extralight text-[#1d1717]">Menit</h1>
-          <h1 className="text-sm font-extralight text-[#1d1717]">Detik</h1>
+          <div className="flex gap-x-10 mx-auto">
+            <div className="flex flex-col items-center gap-y-5">
+              <input
+                type="number"
+                placeholder="00"
+                className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
+              />
+              <label htmlFor="menit">Menit</label>
+            </div>
+            <div className="flex flex-col items-center gap-y-5">
+              <input
+                type="number"
+                placeholder="00"
+                className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
+              />
+              <label htmlFor="detik">Detik</label>
+            </div>
+          </div>
         </div>
-        <FaRegPlayCircle className="mx-auto text-4xl hover:cursor-pointer" />
+        <FaRegPlayCircle
+          className="mx-auto mt-2 text-4xl hover:cursor-pointer"
+          onClick={() => setStartDeadLine(!startDeadLine)}
+        />
       </div>
     </div>
   )

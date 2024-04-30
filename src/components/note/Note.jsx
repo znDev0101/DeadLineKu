@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useRef } from "react"
-import useAutoSizeTextArea from "../../hooks/useAutoSizeTextArea"
+// import useAutoSizeTextArea from "../../hooks/useAutoSizeTextArea"
 
-const Note = () => {
+const Note = ({ startDeadLine }) => {
   const [valueCatatan, setValueCatatan] = useState("")
   const [valueNamaJobs, setValueNamaJobs] = useState("")
   const firstTextAreaRef = useRef()
   const secondTextAreaRef = useRef()
   const wrapperTextAreaRef = useRef()
 
-  useAutoSizeTextArea(
-    wrapperTextAreaRef.current,
-    firstTextAreaRef.current,
-    secondTextAreaRef.current,
-    valueNamaJobs,
-    valueCatatan
-  )
+  // useAutoSizeTextArea(
+  //   wrapperTextAreaRef.current,
+  //   firstTextAreaRef.current,
+  //   secondTextAreaRef.current,
+  //   valueNamaJobs,
+  //   valueCatatan
+  // )
 
   const handleChangeCatatan = (e) => {
     const val = e.target.value
@@ -37,7 +37,8 @@ const Note = () => {
           value={valueNamaJobs}
           rows={1}
           onChange={handleChangeJobs}
-          ref={firstTextAreaRef}></textarea>
+          ref={firstTextAreaRef}
+          disabled={startDeadLine}></textarea>
       </div>
       <div className="flex flex-col bg-[#FE41F6] rounded-t-xl">
         <label className="ps-4 pt-2 text-white">CATATAN:</label>
@@ -48,7 +49,8 @@ const Note = () => {
           value={valueCatatan}
           rows={1}
           onChange={handleChangeCatatan}
-          ref={secondTextAreaRef}></textarea>
+          ref={secondTextAreaRef}
+          disabled={startDeadLine}></textarea>
       </div>
     </div>
   )

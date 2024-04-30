@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import TableAccount from "../tableAccount/TableAccount"
-import useAutoSizeTextArea from "../../hooks/useAutoSizeTextArea"
+// import useAutoSizeTextArea from "../../hooks/useAutoSizeTextArea"
 const CatatanJobs = () => {
   const [valueCatatan, setValueCatatan] = useState("")
   const [valueNamaJobs, setValueNamaJobs] = useState("")
@@ -8,13 +8,13 @@ const CatatanJobs = () => {
   const secondTextAreaRef = useRef()
   const wrapperTextAreaRef = useRef()
 
-  useAutoSizeTextArea(
-    wrapperTextAreaRef.current,
-    firstTextAreaRef.current,
-    secondTextAreaRef.current,
-    valueNamaJobs,
-    valueCatatan
-  )
+  // useAutoSizeTextArea(
+  //   wrapperTextAreaRef.current,
+  //   firstTextAreaRef.current,
+  //   secondTextAreaRef.current,
+  //   valueNamaJobs,
+  //   valueCatatan
+  // )
 
   const handleChangeCatatan = (e) => {
     const val = e.target.value

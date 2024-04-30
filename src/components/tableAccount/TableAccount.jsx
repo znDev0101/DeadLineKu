@@ -95,7 +95,7 @@ const TableAccount = () => {
         <div className="flex bg-black ps-3">
           <label className="text-white">NO PEMBAYARAN</label>
         </div>
-        <div className="h-24 text-center px-1  text-white relative border border-b-black">
+        <div className="h-28 text-center px-1  text-white relative border border-b-black">
           <input
             type="text"
             className="h-full bg-transparent ms-7 ps-2 w-[85%] placeholder:text-center text-black"
@@ -121,11 +121,11 @@ const TableAccount = () => {
             />
             <div className="flex items-center justify-between">
               <MdOutlineContentCopy
-                className="text-[#128DFF] text-2xl"
+                className="text-[#128DFF] text-3xl"
                 onClick={handleClickCopyNoPembayaran}
               />
               <MdOutlineDeleteForever
-                className="text-[#FF0000] text-3xl"
+                className="text-[#FF0000] text-4xl"
                 onClick={handleDeleteNoPembayaran}
               />
             </div>
@@ -134,7 +134,7 @@ const TableAccount = () => {
 
         {numberTable.length === 0 ? (
           <>
-            <div className="h-24 text-center px-1  text-white relative border border-b-black">
+            <div className="h-28 text-center px-1  text-white relative border border-b-black">
               <input
                 type="text"
                 className="h-full bg-transparent ms-7 ps-2 w-[85%] text-black placeholder:text-center"
@@ -152,7 +152,7 @@ const TableAccount = () => {
                 <HiOutlineDotsHorizontal className="placeholder:text-[#B2ADAD]" />
               </div>
             </div>
-            <div className="h-24 px-1 items-center text-white  border border-l-black border-b-black">
+            <div className="h-28 px-1 items-center text-white  border border-l-black border-b-black">
               <div className="grid grid-rows-[2fr_1fr]">
                 <input
                   type="text"
@@ -160,8 +160,8 @@ const TableAccount = () => {
                   placeholder="KETIK DISINI..."
                 />
                 <div className="flex items-center justify-between">
-                  <MdOutlineContentCopy className="text-[#128DFF] text-2xl" />
-                  <MdOutlineDeleteForever className="text-[#FF0000] text-3xl" />
+                  <MdOutlineContentCopy className="text-[#128DFF] text-3xl" />
+                  <MdOutlineDeleteForever className="text-[#FF0000] text-4xl" />
                 </div>
               </div>
             </div>
@@ -181,8 +181,11 @@ const TableAccount = () => {
       </div>
       <div className="w-[96vw] mx-auto py-2 mb-4 bg-[#26BC00] rounded-b-xl">
         <div className="flex justify-end items-center gap-x-2 text-white pe-2">
-          <span>SALIN SEMUA</span>
-          <MdOutlineContentCopy onClick={handleClickCopyAllNamaAkun} />
+          <span className="font-bold">SALIN SEMUA</span>
+          <MdOutlineContentCopy
+            onClick={handleClickCopyAllNamaAkun}
+            className="text-4xl"
+          />
         </div>
       </div>
     </>
