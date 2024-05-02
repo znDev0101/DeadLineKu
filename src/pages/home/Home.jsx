@@ -129,7 +129,7 @@ const Home = () => {
           setMinutes("59")
           setHours("24")
         }
-      }, 1000)
+      }, 10)
     }
   }, [startDeadLine, seconds])
 
