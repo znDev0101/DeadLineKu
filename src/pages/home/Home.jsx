@@ -78,90 +78,86 @@ const Home = () => {
         })
       }
 
-      setTimeout(
-        () => {
-          if (seconds.length !== 0) {
-            let convertSeconds = parseInt(seconds)
-            let fSeconds =
-              convertSeconds <= 10 && seconds !== "00"
-                ? "0" + (convertSeconds - 1)
-                : seconds > 10
-                ? convertSeconds - 1
-                : "00"
+      setTimeout(() => {
+        if (seconds.length !== 0) {
+          let convertSeconds = parseInt(seconds)
+          let fSeconds =
+            convertSeconds <= 10 && seconds !== "00"
+              ? "0" + (convertSeconds - 1)
+              : seconds > 10
+              ? convertSeconds - 1
+              : "00"
 
-            setSeconds(
-              minutes.length !== 0 && minutes !== "00" && seconds === "00"
-                ? "59"
-                : fSeconds
-            )
-          } else {
-            setSeconds(minutes.length === 0 ? "00" : "59")
-          }
-          if (minutes.length !== 0 && seconds === "00" && minutes !== "00") {
-            let convertMinutes = parseInt(minutes)
-            let fMinutes =
-              convertMinutes <= 10 && seconds === "00"
-                ? "0" + (convertMinutes - 1)
-                : convertMinutes > 10 && seconds === "00" && convertMinutes - 1
+          setSeconds(
+            minutes.length !== 0 && minutes !== "00" && seconds === "00"
+              ? "59"
+              : fSeconds
+          )
+        } else {
+          setSeconds(minutes.length === 0 ? "00" : "59")
+        }
+        if (minutes.length !== 0 && seconds === "00" && minutes !== "00") {
+          let convertMinutes = parseInt(minutes)
+          let fMinutes =
+            convertMinutes <= 10 && seconds === "00"
+              ? "0" + (convertMinutes - 1)
+              : convertMinutes > 10 && seconds === "00" && convertMinutes - 1
 
-            setMinutes(
-              hours.length !== 0 && hours !== "00" && minutes === "00"
-                ? "59"
-                : fMinutes
-            )
-          } else {
-            setMinutes(minutes.length !== 0 ? minutes : "00")
-          }
-          if (
-            hours.length !== 0 &&
-            hours !== "00" &&
-            minutes === "00" &&
-            seconds === "00"
-          ) {
-            let convertHours = parseInt(hours)
-            let fHours =
-              convertHours <= 10 && minutes === "00" && seconds === "00"
-                ? "0" + (convertHours - 1)
-                : convertHours > 10 &&
-                  minutes === "00" &&
-                  seconds === "00" &&
-                  convertHours - 1
-            setHours(fHours)
-            setSeconds("59")
-            setMinutes("59")
-          } else {
-            setHours(hours.length !== 0 ? hours : "00")
-          }
-          if (
-            day !== "00" &&
+          setMinutes(
+            hours.length !== 0 && hours !== "00" && minutes === "00"
+              ? "59"
+              : fMinutes
+          )
+        } else {
+          setMinutes(minutes.length !== 0 ? minutes : "00")
+        }
+        if (
+          hours.length !== 0 &&
+          hours !== "00" &&
+          minutes === "00" &&
+          seconds === "00"
+        ) {
+          let convertHours = parseInt(hours)
+          let fHours =
+            convertHours <= 10 && minutes === "00" && seconds === "00"
+              ? "0" + (convertHours - 1)
+              : convertHours > 10 &&
+                minutes === "00" &&
+                seconds === "00" &&
+                convertHours - 1
+          setHours(fHours)
+          setSeconds("59")
+          setMinutes("59")
+        } else {
+          setHours(hours.length !== 0 ? hours : "00")
+        }
+        if (
+          day !== "00" &&
+          hours === "00" &&
+          minutes === "00" &&
+          seconds === "00"
+        ) {
+          console.log("test")
+          let convertDays = parseInt(day)
+          let fDays =
+            convertDays <= 10 &&
             hours === "00" &&
             minutes === "00" &&
             seconds === "00"
-          ) {
-            console.log("test")
-            let convertDays = parseInt(day)
-            let fDays =
-              convertDays <= 10 &&
-              hours === "00" &&
-              minutes === "00" &&
-              seconds === "00"
-                ? "0" + (convertDays - 1)
-                : convertDays > 10 &&
-                  hours === "00" &&
-                  minutes === "00" &&
-                  seconds === "00" &&
-                  convertDays - 1
-            setDay(fDays)
-            setHours(day.length !== 0 && hours.length === 0 ? "00" : "23")
-            setMinutes(day.length !== 0 && minutes.length === 0 ? "00" : "59")
-            setSeconds(day.length !== 0 && seconds.length === 0 ? "00" : "59")
-          } else {
-            setDay(day.length === 0 ? "00" : day)
-          }
-        },
-        0,
-        1
-      )
+              ? "0" + (convertDays - 1)
+              : convertDays > 10 &&
+                hours === "00" &&
+                minutes === "00" &&
+                seconds === "00" &&
+                convertDays - 1
+          setDay(fDays)
+          setHours(day.length !== 0 && hours.length === 0 ? "00" : "23")
+          setMinutes(day.length !== 0 && minutes.length === 0 ? "00" : "59")
+          setSeconds(day.length !== 0 && seconds.length === 0 ? "00" : "59")
+        } else {
+          setDay(day.length === 0 ? "00" : day)
+        }
+      }, 1000)
     }
   }, [startDeadLine, seconds])
 
