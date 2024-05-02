@@ -140,10 +140,10 @@ const Home = () => {
               ? "0" + (day === "00" ? "0" : convertDays - 1)
               : convertDays - 1
           setDay(fDays)
-          setHours(day !== "00" && hours === "00" ? "23" : hours)
-          setMinutes(day !== "00" && hours === "00" ? "59" : minutes)
+          setHours(day !== "00" && hours === "00" ? "23" : "")
+          setMinutes(day !== "00" && hours === "00" ? "59" : "")
           setSeconds(
-            day !== "00" && hours === "00" && minutes === "00" ? "59" : seconds
+            day !== "00" && hours === "00" && minutes === "00" ? "59" : ""
           )
         }
       }, 1000)
