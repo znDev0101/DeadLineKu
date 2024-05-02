@@ -90,6 +90,7 @@ const Home = () => {
       }
       if (seconds.length === 0) {
         setSeconds("00")
+        console.log("seconds")
       }
 
       let convertSeconds = parseInt(seconds)
@@ -146,7 +147,7 @@ const Home = () => {
             day !== "00" && hours === "00" && minutes === "00" ? "59" : ""
           )
         }
-      }, 1000)
+      }, 10)
     }
   }, [startDeadLine, seconds])
 
