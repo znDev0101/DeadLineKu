@@ -58,6 +58,26 @@ const Home = () => {
 
   useEffect(() => {
     if (startDeadLine) {
+      if (
+        startDeadLine &&
+        seconds === "00" &&
+        minutes === "00" &&
+        hours === "00" &&
+        day === "00"
+      ) {
+        toast.warn("waktu time deadline anda sudah habis", {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        })
+      }
+
       setTimeout(() => {
         if (seconds.length !== 0) {
           let convertSeconds = parseInt(seconds)

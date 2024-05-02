@@ -7,7 +7,7 @@ const Header = () => {
     <header className="flex justify-between px-4 py-3">
       <div className="flex items-center gap-x-2">
         <FaPlus />
-        <h1 className="font-bold text-red-700">HALAMAN BARU</h1>
+        <h1 className="font-bold ">HALAMAN BARU</h1>
       </div>
       <div className="flex items-center gap-x-2">
         <IoLinkSharp />

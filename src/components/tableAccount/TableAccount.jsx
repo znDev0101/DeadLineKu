@@ -10,6 +10,7 @@ import { toast, Bounce } from "react-toastify"
 
 import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer } from "react-toastify"
+import { MyContext } from "../../context/MyContext"
 
 const TableAccount = () => {
   const [number, setNumber] = useState(0)
@@ -22,6 +23,8 @@ const TableAccount = () => {
   const inputNamaAkunRef = useRef()
 
   const newInputNamaAkunRef = useRef([])
+
+  const { startDeadLine, seconds, minutes, hours, day } = useContext(MyContext)
 
   const handleClickCopyAllNamaAkun = () => {
     if (namaAkun.length !== 0) {
@@ -106,6 +109,13 @@ const TableAccount = () => {
             value={namaAkun}
             onChange={(e) => setNamaAkun(e.target.value)}
             ref={inputNamaAkunRef}
+            disabled={
+              startDeadLine &&
+              seconds === "00" &&
+              minutes === "00" &&
+              hours === "00" &&
+              day === "00"
+            }
           />
           <div className="text-black absolute flex flex-col items-center w-8 left-0 top-0 pt-3 border border-r-black h-full">
             <span>1.</span>
@@ -119,6 +129,13 @@ const TableAccount = () => {
               className=" w-full h-full bg-transparent ps-4 text-black"
               name="noPembayaran"
               value={noPembayaran}
+              disabled={
+                startDeadLine &&
+                seconds === "00" &&
+                minutes === "00" &&
+                hours === "00" &&
+                day === "00"
+              }
               onChange={(e) => setNoPembayaran(e.target.value)}
               placeholder="KETIK DISINI..."
             />

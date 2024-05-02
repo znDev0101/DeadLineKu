@@ -27,8 +27,11 @@ const TimeDeadLine = () => {
       <h1 className="w-max  bg-[#F2F8FF] text-blue-500 py-2 font-bold px-20 pb-5 mx-auto mt-10 rounded-full ">
         DEADLINE
       </h1>
-      <div className=" absolute top-7 left-3 right-3 bg-[#F2F8FF] rounded-md">
-        <div className="grid grid-cols-2 items-center justify-center text-center  gap-y-5  mt-10 ">
+      <div
+        className={` absolute top-7 left-3 right-3 bg-[#F2F8FF] rounded-md ${
+          startDeadLine && "pb-11"
+        }`}>
+        <div className="grid grid-cols-2 items-center justify-center text-center  gap-y-5  mt-10">
           <div className="flex gap-x-10 mx-auto">
             <div className="flex flex-col items-center gap-y-5">
               {startDeadLine ? (
@@ -40,7 +43,7 @@ const TimeDeadLine = () => {
                       minutes === "00" &&
                       hours === "00" &&
                       day === "00" &&
-                      `text-red-500`
+                      `text-[#E51E1E]`
                     } `}>
                     {day}
                   </span>
@@ -67,7 +70,7 @@ const TimeDeadLine = () => {
                       minutes === "00" &&
                       hours === "00" &&
                       day === "00" &&
-                      `text-red-500`
+                      `text-[#E51E1E]`
                     } `}>
                     {hours}
                   </span>
@@ -90,13 +93,13 @@ const TimeDeadLine = () => {
               {startDeadLine ? (
                 <div className="">
                   <span
-                    className={`text-4xl  border ${
+                    className={`text-4xl   ${
                       startDeadLine &&
                       seconds === "00" &&
                       minutes === "00" &&
                       hours === "00" &&
                       day === "00" &&
-                      `text-red-500`
+                      `text-[#E51E1E]`
                     } `}>
                     {minutes}
                   </span>
@@ -117,13 +120,13 @@ const TimeDeadLine = () => {
               {startDeadLine ? (
                 <div className="">
                   <span
-                    className={`text-4xl  border  ${
+                    className={`text-4xl    ${
                       startDeadLine &&
                       seconds === "00" &&
                       minutes === "00" &&
                       hours === "00" &&
                       day === "00" &&
-                      `text-red-500`
+                      `text-[#E51E1E]`
                     } `}>
                     {seconds}
                   </span>
@@ -143,7 +146,9 @@ const TimeDeadLine = () => {
           </div>
         </div>
         <FaRegPlayCircle
-          className="mx-auto mt-2 text-4xl hover:cursor-pointer"
+          className={`mx-auto mt-2 text-4xl hover:cursor-pointer ${
+            startDeadLine && "hidden"
+          }`}
           onClick={toggleStartDeadLine}
         />
       </div>

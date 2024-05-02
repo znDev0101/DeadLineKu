@@ -1,4 +1,5 @@
-import React, { useState, useEffect, forwardRef, useRef } from "react"
+import React, { useState, forwardRef, useContext } from "react"
+import { MyContext } from "../../context/MyContext"
 
 import {
   MdDoneOutline,
@@ -14,6 +15,7 @@ const NewTable = forwardRef(({ index }, ref) => {
   const [namaAkun, setNamaAkun] = useState("")
 
   // const newInputNamaAkunRef = useRef()
+  const { startDeadLine, seconds, minutes, hours, day } = useContext(MyContext)
 
   const handleDeleteNoPembayaran = () => {
     if (noPembayaran.length !== 0 || namaAkun.length !== 0) {
@@ -59,6 +61,13 @@ const NewTable = forwardRef(({ index }, ref) => {
           name="namaAkun"
           placeholder="KETIK DISINI..."
           value={namaAkun}
+          disabled={
+            startDeadLine &&
+            seconds === "00" &&
+            minutes === "00" &&
+            hours === "00" &&
+            day === "00"
+          }
           onChange={(e) => setNamaAkun(e.target.value)}
           ref={ref}
         />
@@ -74,6 +83,13 @@ const NewTable = forwardRef(({ index }, ref) => {
             className=" w-full h-full bg-transparent ps-4 text-black"
             placeholder="KETIK DISINI..."
             value={noPembayaran}
+            disabled={
+              startDeadLine &&
+              seconds === "00" &&
+              minutes === "00" &&
+              hours === "00" &&
+              day === "00"
+            }
             onChange={(e) => setNoPembayaran(e.target.value)}
           />
           <div className="flex items-center justify-between">
