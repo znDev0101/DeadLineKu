@@ -34,7 +34,7 @@ const TimeDeadLine = () => {
         <div className="grid grid-cols-2 items-center justify-center text-center  gap-y-5  mt-10">
           <div className="flex gap-x-10 mx-auto">
             <div className="flex flex-col items-center gap-y-5">
-              {startDeadLine && day.length !== 0 ? (
+              {startDeadLine ? (
                 <div className="">
                   <span
                     className={`text-4xl w-10 ${
@@ -61,7 +61,7 @@ const TimeDeadLine = () => {
               <label htmlFor="hari">Hari</label>
             </div>
             <div className="flex flex-col items-center gap-y-5">
-              {startDeadLine && hours.length !== 0 ? (
+              {startDeadLine ? (
                 <div className="">
                   <span
                     className={`text-4xl w-10 ${
@@ -90,7 +90,7 @@ const TimeDeadLine = () => {
           </div>
           <div className="flex gap-x-10 mx-auto">
             <div className="flex flex-col items-center gap-y-5">
-              {startDeadLine && minutes.length !== 0 ? (
+              {startDeadLine ? (
                 <div className="">
                   <span
                     className={`text-4xl   ${
@@ -117,7 +117,7 @@ const TimeDeadLine = () => {
               <label htmlFor="menit">Menit</label>
             </div>
             <div className="flex flex-col items-center gap-y-5">
-              {startDeadLine && seconds.length !== 0 ? (
+              {startDeadLine ? (
                 <div className="">
                   <span
                     className={`text-4xl    ${
