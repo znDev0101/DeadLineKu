@@ -103,7 +103,7 @@ const Home = () => {
           convertSeconds <= 10
             ? "0" +
               (minutes !== "00" && seconds !== "00" ? convertSeconds - 1 : "0")
-            : convertSeconds > 10 && convertSeconds - 1
+            : convertSeconds - 1
 
         setSeconds(fSeconds)
 
