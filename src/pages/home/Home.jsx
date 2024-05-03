@@ -99,13 +99,15 @@ const Home = () => {
       let convertDays = parseInt(day)
       setTimeout(() => {
         // FOR SECOND
-        let fSeconds =
-          convertSeconds <= 10
-            ? "0" +
-              (minutes !== "00" && seconds !== "00" ? --convertSeconds : "0")
-            : --convertSeconds
+        if (seconds.length !== 0) {
+          let fSeconds =
+            convertSeconds <= 10
+              ? "0" +
+                (minutes !== "00" && seconds !== "00" ? --convertSeconds : "0")
+              : --convertSeconds
 
-        setSeconds(fSeconds)
+          setSeconds(fSeconds)
+        }
 
         // FOR MINUTES
         if (seconds === "00") {

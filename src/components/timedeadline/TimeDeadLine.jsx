@@ -24,7 +24,7 @@ const TimeDeadLine = () => {
 
   return (
     <div className=" w-full relative">
-      <h1 className="w-max  bg-[#F2F8FF] text-blue-500 py-2 font-bold px-20 pb-5 mx-auto mt-10 rounded-full ">
+      <h1 className="w-max  bg-[#F2F8FF] text-red-500 py-2 font-bold px-20 pb-5 mx-auto mt-10 rounded-full ">
         DEADLINE
       </h1>
       <div
