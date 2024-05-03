@@ -125,27 +125,27 @@ const Home = () => {
         }
 
         // FOR HOURS
-        if (minutes === "00" && seconds === "00") {
-          let fHours =
-            convertHours <= 10
-              ? "0" + (day === "00" && hours === "00" ? "0" : convertHours - 1)
-              : convertHours - 1
-          setHours(fHours)
-        }
+        // if (minutes === "00" && seconds === "00") {
+        //   let fHours =
+        //     convertHours <= 10
+        //       ? "0" + (day === "00" && hours === "00" ? "0" : convertHours - 1)
+        //       : convertHours - 1
+        //   setHours(fHours)
+        // }
 
-        // FOR DAYS
-        if (hours === "00" && minutes === "00" && seconds === "00") {
-          let fDays =
-            convertDays <= 10
-              ? "0" + (day === "00" ? "0" : convertDays - 1)
-              : convertDays - 1
-          setDay(fDays)
-          // setHours(day !== "00" && hours === "00" ? "23" : "")
-          // setMinutes(day !== "00" && hours === "00" ? "59" : "")
-          // setSeconds(
-          //   day !== "00" && hours === "00" && minutes === "00" ? "59" : ""
-          // )
-        }
+        // // FOR DAYS
+        // if (hours === "00" && minutes === "00" && seconds === "00") {
+        //   let fDays =
+        //     convertDays <= 10
+        //       ? "0" + (day === "00" ? "0" : convertDays - 1)
+        //       : convertDays - 1
+        //   setDay(fDays)
+        //   setHours(day !== "00" && hours === "00" ? "23" : "")
+        //   setMinutes(day !== "00" && hours === "00" ? "59" : "")
+        //   setSeconds(
+        //     day !== "00" && hours === "00" && minutes === "00" ? "59" : ""
+        //   )
+        // }
       }, 1000)
     }
   }, [startDeadLine, seconds])
