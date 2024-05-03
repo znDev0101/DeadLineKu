@@ -93,18 +93,17 @@ const Home = () => {
         console.log("seconds")
       }
 
+      let convertSeconds = parseInt(seconds)
+      let convertMinutes = parseInt(minutes)
+      let convertHours = parseInt(hours)
+      let convertDays = parseInt(day)
       setTimeout(() => {
-        let convertSeconds = parseInt(seconds)
-        let convertMinutes = parseInt(minutes)
-        let convertHours = parseInt(hours)
-        let convertDays = parseInt(day)
-
         // FOR SECOND
         let fSeconds =
           convertSeconds <= 10
             ? "0" +
               (minutes !== "00" && seconds !== "00" ? convertSeconds - 1 : "0")
-            : convertSeconds > 10 - 1
+            : convertSeconds - 1
 
         setSeconds(fSeconds)
 
