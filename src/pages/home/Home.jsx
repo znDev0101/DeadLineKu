@@ -105,11 +105,7 @@ const Home = () => {
               (minutes !== "00" && seconds !== "00" ? convertSeconds - 1 : "0")
             : convertSeconds > 10 && convertSeconds - 1
 
-        setSeconds(
-          (hours !== "00" || minutes !== "00") && seconds === "00"
-            ? "59"
-            : fSeconds
-        )
+        setSeconds(fSeconds)
 
         // FOR MINUTES
         if (seconds === "00") {
@@ -122,6 +118,9 @@ const Home = () => {
             hours !== "00" && minutes === "00" && seconds === "00"
               ? "59"
               : fMinutes
+          )
+          setSeconds(
+            (hours !== "00" || minutes !== "00") && seconds === "00" && "59"
           )
         }
 
@@ -141,13 +140,13 @@ const Home = () => {
               ? "0" + (day === "00" ? "0" : convertDays - 1)
               : convertDays - 1
           setDay(fDays)
-          setHours(day !== "00" && hours === "00" ? "23" : "")
-          setMinutes(day !== "00" && hours === "00" ? "59" : "")
-          setSeconds(
-            day !== "00" && hours === "00" && minutes === "00" ? "59" : ""
-          )
+          // setHours(day !== "00" && hours === "00" ? "23" : "")
+          // setMinutes(day !== "00" && hours === "00" ? "59" : "")
+          // setSeconds(
+          //   day !== "00" && hours === "00" && minutes === "00" ? "59" : ""
+          // )
         }
-      }, 10)
+      }, 1000)
     }
   }, [startDeadLine, seconds])
 
