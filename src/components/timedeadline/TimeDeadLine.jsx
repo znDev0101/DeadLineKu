@@ -1,6 +1,5 @@
 import React, { useState, useRef, useContext } from "react"
 import { FaRegPlayCircle } from "react-icons/fa"
-import CatatanJobs from "../catatanjobs/CatatanJobs"
 import { MyContext } from "../../context/MyContext"
 
 const TimeDeadLine = () => {
@@ -16,11 +15,6 @@ const TimeDeadLine = () => {
     seconds,
     getInputSecond,
   } = useContext(MyContext)
-
-  const setDayRef = useRef()
-  const setHoursRef = useRef()
-  const setMinutesRef = useRef()
-  const setSecondRef = useRef()
 
   return (
     <div className=" w-full relative">
@@ -52,7 +46,7 @@ const TimeDeadLine = () => {
                 <input
                   type="number"
                   placeholder="00"
-                  value={day === 0 ? "" : day}
+                  value={day === "00" ? "" : day}
                   onChange={getInputDay}
                   className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
                 />
@@ -79,7 +73,7 @@ const TimeDeadLine = () => {
                 <input
                   type="number"
                   placeholder="00"
-                  value={hours === 0 ? "" : hours}
+                  value={hours === "00" ? "" : hours}
                   onChange={getInputHours}
                   className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
                 />
@@ -108,7 +102,7 @@ const TimeDeadLine = () => {
                 <input
                   type="number"
                   placeholder="00"
-                  value={minutes === 0 ? "" : minutes}
+                  value={minutes === "00" ? "" : minutes}
                   onChange={getInputMinutes}
                   className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
                 />
@@ -135,7 +129,7 @@ const TimeDeadLine = () => {
                 <input
                   type="number"
                   placeholder="00"
-                  value={seconds === 0 ? "" : seconds}
+                  value={seconds === "00" ? "" : seconds}
                   onChange={getInputSecond}
                   className={` text-center w-10 bg-transparent text-4xl  focus-within:outline-none  `}
                 />
