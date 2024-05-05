@@ -17,6 +17,7 @@ const TableAccount = () => {
   const [numberTable, setNumberTable] = useState(0)
   const [namaAkun, setNamaAkun] = useState("")
   const [noPembayaran, setNoPembayaran] = useState("")
+  const [isClickDone, setIsClickDone] = useState(false)
 
   const tableRef = useRef()
 
@@ -27,40 +28,28 @@ const TableAccount = () => {
   const { startDeadLine, seconds, minutes, hours, day } = useContext(MyContext)
 
   const handleClickCopyAllNamaAkun = () => {
-    if (namaAkun.length !== 0) {
-      let results = ""
-      newInputNamaAkunRef.current.forEach((data) => {
-        if (data.current.value.length !== 0) {
-          results += `${data.current.value}\n`
-        }
-      })
-      navigator.clipboard.writeText(
-        `${inputNamaAkunRef.current.value}\n${results}`
-      )
-      toast.success("copy success", {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      })
-    } else {
-      toast.warn("input belum komplit ", {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      })
-    }
+    let results = ""
+    newInputNamaAkunRef.current.forEach((data) => {
+      if (data.current.value.length !== 0) {
+        results += `${data.current.value}\n`
+      }
+    })
+    navigator.clipboard.writeText(
+      inputNamaAkunRef?.current?.value !== 0
+        ? `${inputNamaAkunRef.current.value}\n${results}\n`
+        : `${results}\n`
+    )
+    toast.success("copy success", {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    })
   }
 
   const handleClickCopyNoPembayaran = () => {
@@ -131,7 +120,12 @@ const TableAccount = () => {
           />
           <div className="text-black absolute flex flex-col items-center w-8 left-0 top-0 pt-3 border border-r-black h-full">
             <span>1.</span>
-            <MdDoneOutline className="text-[#148EFF]" />
+            <MdDoneOutline
+              className={`${
+                isClickDone ? "text-[#148EFF]" : "text-[#B2ADAD] "
+              } `}
+              onClick={() => setIsClickDone(!isClickDone)}
+            />
           </div>
         </div>
         <div className="flex px-1 items-center text-white  border border-l-black border-b-black">

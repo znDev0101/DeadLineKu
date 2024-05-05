@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from "react"
+import React, { useState, useRef, useContext } from "react"
 import { MyContext } from "../../context/MyContext"
 // import useAutoSizeTextArea from "../../hooks/useAutoSizeTextArea"
 
@@ -7,7 +7,6 @@ const Note = () => {
   const [valueNamaJobs, setValueNamaJobs] = useState("")
   const firstTextAreaRef = useRef()
   const secondTextAreaRef = useRef()
-  const wrapperTextAreaRef = useRef()
 
   const { startDeadLine } = useContext(MyContext)
 

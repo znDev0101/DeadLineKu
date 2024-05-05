@@ -14,6 +14,8 @@ const NewTable = forwardRef(({ index }, ref) => {
   const [noPembayaran, setNoPembayaran] = useState("")
   const [namaAkun, setNamaAkun] = useState("")
 
+  const [isClickDone, setIsClickDone] = useState(false)
+
   // const newInputNamaAkunRef = useRef()
   const { startDeadLine, seconds, minutes, hours, day } = useContext(MyContext)
 
@@ -73,7 +75,10 @@ const NewTable = forwardRef(({ index }, ref) => {
         />
         <div className="text-black absolute flex flex-col items-center w-8 left-0 top-0 pt-3 border border-r-black h-full">
           <span>{index + 2}</span>
-          <MdDoneOutline className="text-[#148EFF]" />
+          <MdDoneOutline
+            className={`${isClickDone ? "text-[#148EFF]" : "text-[#B2ADAD]"} `}
+            onClick={() => setIsClickDone(!isClickDone)}
+          />
         </div>
       </div>
       <div className="flex px-1 items-center text-white  border border-l-black border-b-black">
