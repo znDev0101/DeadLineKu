@@ -11,14 +11,6 @@ const Note = () => {
 
   const { startDeadLine } = useContext(MyContext)
 
-  // useAutoSizeTextArea(
-  //   wrapperTextAreaRef.current,
-  //   firstTextAreaRef.current,
-  //   secondTextAreaRef.current,
-  //   valueNamaJobs,
-  //   valueCatatan
-  // )
-
   const handleChangeCatatan = (e) => {
     const val = e.target.value
     setValueCatatan(val)
@@ -41,7 +33,9 @@ const Note = () => {
           rows={1}
           onChange={handleChangeJobs}
           ref={firstTextAreaRef}
-          disabled={startDeadLine}></textarea>
+          disabled={startDeadLine}>
+          {startDeadLine && <a href={`${valueNamaJobs}`} target="_blank"></a>}
+        </textarea>
       </div>
       <div className="flex flex-col bg-[#FE41F6] rounded-t-xl">
         <label className="ps-4 pt-2 text-white">CATATAN:</label>
