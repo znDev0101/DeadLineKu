@@ -25,17 +25,24 @@ const Note = () => {
     <div className="w-full mt-48 px-2 grid grid-cols-2 ">
       <div className="flex flex-col bg-[#288BFF] rounded-t-xl ">
         <label className="ps-4 pt-2 text-white">NAMA JOBS:</label>
-        <textarea
-          name="nama-jobs"
-          className="w-full px-4 h-28 bg-transparent  placeholder:text-sm placeholder:text-white text-white focus-within:outline-none"
-          placeholder="Ketik Disini..."
-          value={valueNamaJobs}
-          rows={1}
-          onChange={handleChangeJobs}
-          ref={firstTextAreaRef}
-          disabled={startDeadLine}>
-          {startDeadLine && <a href={`${valueNamaJobs}`} target="_blank"></a>}
-        </textarea>
+        {startDeadLine ? (
+          <a
+            href={`${valueNamaJobs}`}
+            target="_blank"
+            className="px-4 text-white">
+            {valueNamaJobs}
+          </a>
+        ) : (
+          <textarea
+            name="nama-jobs"
+            className="w-full px-4 h-28 bg-transparent  placeholder:text-sm placeholder:text-white text-white focus-within:outline-none"
+            placeholder="Ketik Disini..."
+            value={valueNamaJobs}
+            rows={1}
+            onChange={handleChangeJobs}
+            ref={firstTextAreaRef}
+            disabled={startDeadLine}></textarea>
+        )}
       </div>
       <div className="flex flex-col bg-[#FE41F6] rounded-t-xl">
         <label className="ps-4 pt-2 text-white">CATATAN:</label>
