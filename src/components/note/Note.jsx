@@ -21,9 +21,9 @@ const Note = () => {
   }
 
   return (
-    <div className="w-full mt-48 px-2 grid grid-cols-2 ">
+    <div className="w-full mt-36 px-2 grid grid-cols-2 ">
       <div className="flex flex-col bg-[#288BFF] rounded-t-xl ">
-        <label className="ps-4 pt-2 text-white">NAMA JOBS:</label>
+        <label className="ps-4 pt-2 text-white font-bold">NAMA JOBS:</label>
         {startDeadLine ? (
           <a
             href={`${valueNamaJobs}`}
@@ -44,7 +44,7 @@ const Note = () => {
         )}
       </div>
       <div className="flex flex-col bg-[#FE41F6] rounded-t-xl">
-        <label className="ps-4 pt-2 text-white">CATATAN:</label>
+        <label className="ps-4 pt-2 text-white font-bold">CATATAN:</label>
         <textarea
           name="nama-jobs"
           className="w-full px-4 h-28 bg-transparent  placeholder:text-sm placeholder:text-white text-white focus-within:outline-none  "

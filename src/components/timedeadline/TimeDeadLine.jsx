@@ -17,14 +17,12 @@ const TimeDeadLine = () => {
   } = useContext(MyContext)
 
   return (
-    <div className=" w-full relative">
-      <h1 className="w-max  bg-[#F2F8FF] text-red-500 py-2 font-bold px-20 pb-5 mx-auto mt-10 rounded-full ">
+    <div className="w-full relative">
+      <h1 className="w-max  bg-[#F2F8FF] text-black py-2 font-bold px-20 pb-5 mx-auto mt-10 rounded-full ">
         DEADLINE
       </h1>
       <div
-        className={` absolute top-7 left-3 right-3 bg-[#F2F8FF] rounded-md ${
-          startDeadLine && "pb-11"
-        }`}>
+        className={` absolute top-7 left-3 right-3 bg-[#F2F8FF]  rounded-md `}>
         <div className="grid grid-cols-2 items-center justify-center text-center  gap-y-5  mt-10">
           <div className="flex gap-x-10 mx-auto">
             <div className="flex flex-col items-center gap-y-5">
@@ -140,7 +138,7 @@ const TimeDeadLine = () => {
           </div>
         </div>
         <FaRegPlayCircle
-          className={`mx-auto mt-2 text-4xl hover:cursor-pointer ${
+          className={`mx-auto text-4xl hover:cursor-pointer ${
             startDeadLine && "hidden"
           }`}
           onClick={toggleStartDeadLine}
