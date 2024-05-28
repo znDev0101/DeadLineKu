@@ -62,26 +62,25 @@ const Home = () => {
   }
 
   const createTimer = async () => {
-    // const uuid = crypto.randomUUID()
-    // const data = {
-    //   uuid: uuid,
-    //   seconds: seconds,
-    //   minutes: minutes,
-    //   hours: hours,
-    //   day: day,
-    // }
-    // const response = await fetch(
-    //   "https://timer-api-henna.vercel.app/timer/create-timer",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   }
-    // )
-    // return response.json()
-    alert("test")
+    const uuid = crypto.randomUUID()
+    const data = {
+      uuid: uuid,
+      seconds: seconds,
+      minutes: minutes,
+      hours: hours,
+      day: day,
+    }
+    const response = await fetch(
+      "https://timer-api-henna.vercel.app/timer/create-timer",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
+    return response.json()
   }
 
   // useEffect(() => {
