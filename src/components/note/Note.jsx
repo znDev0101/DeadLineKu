@@ -1,14 +1,17 @@
-import React, { useState, useRef, useContext } from "react"
+import React, { useState, useRef, useContext, useEffect } from "react"
 import { MyContext } from "../../context/MyContext"
 // import useAutoSizeTextArea from "../../hooks/useAutoSizeTextArea"
 
 const Note = () => {
   const [valueCatatan, setValueCatatan] = useState("")
   const [valueNamaJobs, setValueNamaJobs] = useState("")
+  const [resultNamaJobs, setResultNamaJobs] = useState("")
+  const [urlNamaJobs, setUrlNamaJobs] = useState("")
   const firstTextAreaRef = useRef()
   const secondTextAreaRef = useRef()
+  const namaJobsRef = useRef(null)
 
-  const { startDeadLine } = useContext(MyContext)
+  const { startDeadLine, setStartDeadLine } = useContext(MyContext)
 
   const handleChangeCatatan = (e) => {
     const val = e.target.value
@@ -20,17 +23,30 @@ const Note = () => {
     setValueNamaJobs(val)
   }
 
+  const checkIfInputUrl = (input) => {
+    let urlPattern =
+      /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=%]+$/g
+
+    let url = []
+    Array.from(input).forEach((str) => {
+      if (str.includes(urlPattern)) {
+        url.push(str)
+      }
+    })
+
+    console.log(url)
+  }
+
+  useEffect(() => {
+    if (startDeadLine) checkIfInputUrl(valueNamaJobs)
+  }, [startDeadLine])
+
   return (
     <div className="w-full mt-36 px-2 grid grid-cols-2 ">
       <div className="flex flex-col bg-[#288BFF] rounded-t-xl ">
         <label className="ps-4 pt-2 text-white font-bold">NAMA JOBS:</label>
         {startDeadLine ? (
-          <a
-            href={`${valueNamaJobs}`}
-            target="_blank"
-            className="px-4 text-white">
-            {valueNamaJobs}
-          </a>
+          <div ref={namaJobsRef}></div>
         ) : (
           <textarea
             name="nama-jobs"
