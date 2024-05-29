@@ -6,7 +6,7 @@ const TimeDeadLine = () => {
   const {
     startDeadLine,
     toggleStartDeadLine,
-    day,
+    days,
     getInputDay,
     hours,
     getInputHours,
@@ -34,17 +34,17 @@ const TimeDeadLine = () => {
                       seconds === "00" &&
                       minutes === "00" &&
                       hours === "00" &&
-                      day === "00" &&
+                      days === "00" &&
                       `text-[#E51E1E]`
                     } `}>
-                    {day}
+                    {days}
                   </span>
                 </div>
               ) : (
                 <input
-                  type="number"
+                  type="text"
                   placeholder="00"
-                  value={day === "00" ? "" : day}
+                  value={days === "00" ? "" : days}
                   onChange={getInputDay}
                   className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
                 />
@@ -61,7 +61,7 @@ const TimeDeadLine = () => {
                       seconds === "00" &&
                       minutes === "00" &&
                       hours === "00" &&
-                      day === "00" &&
+                      days === "00" &&
                       `text-[#E51E1E]`
                     } `}>
                     {hours}
@@ -69,7 +69,7 @@ const TimeDeadLine = () => {
                 </div>
               ) : (
                 <input
-                  type="number"
+                  type="text"
                   placeholder="00"
                   value={hours === "00" ? "" : hours}
                   onChange={getInputHours}
@@ -90,7 +90,7 @@ const TimeDeadLine = () => {
                       seconds === "00" &&
                       minutes === "00" &&
                       hours === "00" &&
-                      day === "00" &&
+                      days === "00" &&
                       `text-[#E51E1E]`
                     } `}>
                     {minutes}
@@ -98,7 +98,7 @@ const TimeDeadLine = () => {
                 </div>
               ) : (
                 <input
-                  type="number"
+                  type="text"
                   placeholder="00"
                   value={minutes === "00" ? "" : minutes}
                   onChange={getInputMinutes}
@@ -117,7 +117,7 @@ const TimeDeadLine = () => {
                       seconds === "00" &&
                       minutes === "00" &&
                       hours === "00" &&
-                      day === "00" &&
+                      days === "00" &&
                       `text-[#E51E1E]`
                     } `}>
                     {seconds}
@@ -125,7 +125,7 @@ const TimeDeadLine = () => {
                 </div>
               ) : (
                 <input
-                  type="number"
+                  type="text"
                   placeholder="00"
                   value={seconds === "00" ? "" : seconds}
                   onChange={getInputSecond}

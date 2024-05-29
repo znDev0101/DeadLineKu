@@ -9,21 +9,22 @@ import { toast, Bounce } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
 import { MyContext } from "../../context/MyContext"
+import { useParams } from "react-router-dom"
 
 const Home = () => {
   const [startDeadLine, setStartDeadLine] = useState(false)
-  // const [day, setDay] = useState("00")
-  // const [hours, setHours] = useState("00")
-  // const [minutes, setMinutes] = useState("00")
-  // const [seconds, setSeconds] = useState("00")
-  const [seconds, setSeconds] = useState("0" + 0)
-  const [minutes, setMinutes] = useState("0" + 0)
-  const [hours, setHours] = useState("0" + 0)
-  const [day, setDay] = useState("0" + 0)
+  const { uuidUrl } = useParams()
+
+  const [uuid, setUuid] = useState("")
+  const [seconds, setSeconds] = useState("00")
+  const [minutes, setMinutes] = useState("00")
+  const [hours, setHours] = useState("00")
+  const [days, setDays] = useState("00")
+  const [timerFormatSecond, setTimerFormatSecond] = useState(null)
 
   const toggleStartDeadLine = () => {
     if (
-      day !== "00" ||
+      days !== "00" ||
       hours !== "00" ||
       minutes !== "00" ||
       seconds !== "00"
@@ -46,32 +47,43 @@ const Home = () => {
   }
 
   const getInputDay = (e) => {
-    setDay(parseInt(e.target.value))
+    setDays(e.target.value)
   }
 
   const getInputHours = (e) => {
-    setHours(parseInt(e.target.value))
+    setHours(e.target.value)
   }
 
   const getInputMinutes = (e) => {
-    setMinutes(parseInt(e.target.value))
+    setMinutes(e.target.value)
   }
 
   const getInputSecond = (e) => {
-    setSeconds(parseInt(e.target.value))
+    setSeconds(e.target.value)
   }
 
   const createTimer = async () => {
     const uuid = crypto.randomUUID()
+
+    setUuid(uuid)
+
+    let converDays = parseInt(days)
+    let convertHours = parseInt(hours)
+    let convertMinutes = parseInt(minutes)
+    let convertSeconds = parseInt(seconds)
+
+    let totalSeconds =
+      converDays * 24 * 60 * 60 +
+      convertHours * 60 * 60 +
+      convertMinutes * 60 +
+      convertSeconds
+
     const data = {
       uuid: uuid,
-      seconds: seconds,
-      minutes: minutes,
-      hours: hours,
-      day: day,
+      setTimer: totalSeconds,
     }
     const response = await fetch(
-      "https://timer-api-henna.vercel.app/timer/create-timer",
+      "https://deadline-api.vercel.app/timer/create-timer",
       {
         method: "POST",
         headers: {
@@ -82,6 +94,43 @@ const Home = () => {
     )
     return response.json()
   }
+
+  // FETCH DATA IF PARAMS URL NOT UNDEFINED
+  useEffect(() => {
+    if (uuidUrl !== undefined) {
+      console.log("test")
+    }
+  }, [])
+
+  useEffect(() => {
+    if (timerFormatSecond !== null) {
+      const timerInterval = setInterval(() => {
+        let now = new Date().getTime()
+
+        let distance = timerFormatSecond - now
+
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24))
+        let hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        )
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000)
+
+        days = days.toString().padStart(2, "0")
+        hours = hours.toString().padStart(2, "0")
+        minutes = minutes.toString().padStart(2, "0")
+        seconds = seconds.toString().padStart(2, "0")
+
+        setDays(days)
+        setHours(hours)
+        setMinutes(minutes)
+        setSeconds(seconds)
+      }, 1000)
+      return () => {
+        clearInterval(timerInterval)
+      }
+    }
+  }, [seconds])
 
   // useEffect(() => {
   //   if (startDeadLine) {
@@ -179,7 +228,8 @@ const Home = () => {
       value={{
         startDeadLine,
         toggleStartDeadLine,
-        day,
+        uuid,
+        days,
         getInputDay,
         hours,
         getInputHours,
