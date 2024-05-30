@@ -69,20 +69,20 @@ const Home = () => {
 
     setUuid(uuid)
 
-    let converDays = parseInt(days)
-    let convertHours = parseInt(hours)
-    let convertMinutes = parseInt(minutes)
-    let convertSeconds = parseInt(seconds)
+    // let converDays = parseInt(days)
+    // let convertHours = parseInt(hours)
+    // let convertMinutes = parseInt(minutes)
+    // let convertSeconds = parseInt(seconds)
 
-    let totalSeconds =
-      converDays * 24 * 60 * 60 +
-      convertHours * 60 * 60 +
-      convertMinutes * 60 +
-      convertSeconds
+    // let totalSeconds =
+    //   converDays * 24 * 60 * 60 +
+    //   convertHours * 60 * 60 +
+    //   convertMinutes * 60 +
+    //   convertSeconds
 
     const data = {
       uuid: uuid,
-      setTimer: totalSeconds,
+      setTimer: 12345,
     }
     const response = await axios.post(
       "https://deadline-api.vercel.app/timer/create-timer",
@@ -90,30 +90,6 @@ const Home = () => {
     )
 
     return response.data
-    // await axios
-    //   .post("", {
-    //     data,
-    //   })
-    //   .then((res) => {
-    //     console.log(res)
-    //   })
-    // const response = await fetch(
-    //   "https://deadline-api.vercel.app/timer/create-timer",
-    //   {
-    //     method: "POST",
-    //     mode: "cors",
-    //     headers: {
-    //       "Content-type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   }
-    // )
-    //   .then((res) => {
-    //     return res.json()
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error message" + error)
-    //   })
   }
 
   // FETCH DATA IF PARAMS URL NOT UNDEFINED
