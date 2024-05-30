@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css"
 
 import { MyContext } from "../../context/MyContext"
 import { useParams } from "react-router-dom"
+import axios from "axios"
 
 const Home = () => {
   const [startDeadLine, setStartDeadLine] = useState(false)
@@ -84,20 +85,27 @@ const Home = () => {
       setTimer: totalSeconds,
     }
 
-    const response = await fetch(
+    const response = await axios.post(
       "https://deadline-api.vercel.app/timer/create-timer",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "https://deadline-api.vercel.app",
-          "Access-Control-Allow-Credentials": true,
-        },
-        body: JSON.stringify(data),
-      }
+      data
     )
 
-    return response.json()
+    return response.data
+
+    // const response = await fetch(
+    //   "https://deadline-api.vercel.app/timer/create-timer",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       "Access-Control-Allow-Origin": "https://deadline-api.vercel.app",
+    //       "Access-Control-Allow-Credentials": true,
+    //     },
+    //     body: JSON.stringify(data),
+    //   }
+    // )
+
+    // return response.json()
   }
 
   // FETCH DATA IF PARAMS URL NOT UNDEFINED
