@@ -69,20 +69,20 @@ const Home = () => {
 
     setUuid(uuid)
 
-    let converDays = parseInt(days)
-    let convertHours = parseInt(hours)
-    let convertMinutes = parseInt(minutes)
-    let convertSeconds = parseInt(seconds)
+    // let converDays = parseInt(days)
+    // let convertHours = parseInt(hours)
+    // let convertMinutes = parseInt(minutes)
+    // let convertSeconds = parseInt(seconds)
 
-    let totalSeconds =
-      converDays * 24 * 60 * 60 +
-      convertHours * 60 * 60 +
-      convertMinutes * 60 +
-      convertSeconds
+    // let totalSeconds =
+    //   converDays * 24 * 60 * 60 +
+    //   convertHours * 60 * 60 +
+    //   convertMinutes * 60 +
+    //   convertSeconds
 
     const data = {
       uuid: uuid,
-      setTimer: totalSeconds,
+      setTimer: 55555,
     }
 
     const response = await axios.post(
