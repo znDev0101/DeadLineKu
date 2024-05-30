@@ -23,8 +23,8 @@ const Home = () => {
   const [timerFormatSecond, setTimerFormatSecond] = useState(null)
 
   const createTimer = async () => {
-    // const uuid = crypto.randomUUID()
-    // setUuid(uuid)
+    const createUuid = crypto.randomUUID()
+
     // let converDays = parseInt(days)
     // let convertHours = parseInt(hours)
     // let convertMinutes = parseInt(minutes)
@@ -36,8 +36,8 @@ const Home = () => {
     //   convertSeconds
 
     const data = {
-      uuid: 12222,
-      setTimer: 55555,
+      uuid: createUuid,
+      setTimer: 101010,
     }
     const response = await fetch(
       "https://deadline-api.vercel.app/timer/create-timer",
