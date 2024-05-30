@@ -100,41 +100,41 @@ const Home = () => {
   }
 
   // FETCH DATA IF PARAMS URL NOT UNDEFINED
-  useEffect(() => {
-    if (uuidUrl !== undefined) {
-      console.log("test")
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (uuidUrl !== undefined) {
+  //     console.log("test")
+  //   }
+  // }, [])
 
-  useEffect(() => {
-    if (timerFormatSecond !== null) {
-      const timerInterval = setInterval(() => {
-        let now = new Date().getTime()
+  // useEffect(() => {
+  //   if (timerFormatSecond !== null) {
+  //     const timerInterval = setInterval(() => {
+  //       let now = new Date().getTime()
 
-        let distance = timerFormatSecond - now
+  //       let distance = timerFormatSecond - now
 
-        let days = Math.floor(distance / (1000 * 60 * 60 * 24))
-        let hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        )
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000)
+  //       let days = Math.floor(distance / (1000 * 60 * 60 * 24))
+  //       let hours = Math.floor(
+  //         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  //       )
+  //       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+  //       let seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
-        days = days.toString().padStart(2, "0")
-        hours = hours.toString().padStart(2, "0")
-        minutes = minutes.toString().padStart(2, "0")
-        seconds = seconds.toString().padStart(2, "0")
+  //       days = days.toString().padStart(2, "0")
+  //       hours = hours.toString().padStart(2, "0")
+  //       minutes = minutes.toString().padStart(2, "0")
+  //       seconds = seconds.toString().padStart(2, "0")
 
-        setDays(days)
-        setHours(hours)
-        setMinutes(minutes)
-        setSeconds(seconds)
-      }, 1000)
-      return () => {
-        clearInterval(timerInterval)
-      }
-    }
-  }, [seconds])
+  //       setDays(days)
+  //       setHours(hours)
+  //       setMinutes(minutes)
+  //       setSeconds(seconds)
+  //     }, 1000)
+  //     return () => {
+  //       clearInterval(timerInterval)
+  //     }
+  //   }
+  // }, [seconds])
 
   // useEffect(() => {
   //   if (startDeadLine) {
