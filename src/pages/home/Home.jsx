@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Header from "../../components/header/Header"
 import TimeDeadLine from "../../components/timedeadline/TimeDeadLine"
+import axios from "axios"
 
 import TableAccount from "../../components/tableAccount/TableAccount"
 import Note from "../../components/note/Note"
@@ -83,23 +84,30 @@ const Home = () => {
       uuid: uuid,
       setTimer: totalSeconds,
     }
-    const response = await fetch(
-      "https://deadline-api.vercel.app/timer/create-timer",
-      {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    )
+    await axios
+      .post("https://deadline-api.vercel.app/timer/create-timer", {
+        data,
+      })
       .then((res) => {
-        return res.json()
+        console.log(res)
       })
-      .catch((error) => {
-        console.log("Error message" + error)
-      })
+    // const response = await fetch(
+    //   "https://deadline-api.vercel.app/timer/create-timer",
+    //   {
+    //     method: "POST",
+    //     mode: "cors",
+    //     headers: {
+    //       "Content-type": "application/json",
+    //     },
+    //     body: JSON.stringify(data),
+    //   }
+    // )
+    //   .then((res) => {
+    //     return res.json()
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error message" + error)
+    //   })
   }
 
   // FETCH DATA IF PARAMS URL NOT UNDEFINED
