@@ -85,6 +85,8 @@ const Home = () => {
       setTimer: 55555,
     }
 
+    console.log(data)
+
     await fetch("https://deadline-api.vercel.app/timer/create-timer", {
       method: "POST",
       headers: {
