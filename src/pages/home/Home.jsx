@@ -22,7 +22,7 @@ const Home = () => {
   const [days, setDays] = useState("00")
   const [timerFormatSecond, setTimerFormatSecond] = useState(null)
 
-  const toggleStartDeadLine = () => {
+  const toggleStartDeadLine = async () => {
     if (
       days !== "00" ||
       hours !== "00" ||
@@ -30,8 +30,23 @@ const Home = () => {
       seconds !== "00"
     ) {
       setStartDeadLine(!startDeadLine)
-      createTimer()
-      console.log("test")
+      const data = {
+        uuid: 12222,
+        setTimer: 55555,
+      }
+      const response = await fetch(
+        "https://deadline-api.vercel.app/timer/create-timer",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      )
+
+      return response.json()
     } else {
       toast.warn("anda belum sama sekali menset time deadline!", {
         position: "top-center",
@@ -65,76 +80,54 @@ const Home = () => {
 
   const createTimer = async () => {
     // const uuid = crypto.randomUUID()
-
     // setUuid(uuid)
-
     // let converDays = parseInt(days)
     // let convertHours = parseInt(hours)
     // let convertMinutes = parseInt(minutes)
     // let convertSeconds = parseInt(seconds)
-
     // let totalSeconds =
     //   converDays * 24 * 60 * 60 +
     //   convertHours * 60 * 60 +
     //   convertMinutes * 60 +
     //   convertSeconds
-
-    const data = {
-      uuid: 12222,
-      setTimer: 55555,
-    }
-
-    const response = await fetch(
-      "https://deadline-api.vercel.app/timer/create-timer",
-      {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    )
-
-    return response.json()
   }
 
   // FETCH DATA IF PARAMS URL NOT UNDEFINED
-  // useEffect(() => {
-  //   if (uuidUrl !== undefined) {
-  //     console.log("test")
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (uuidUrl !== undefined) {
+      console.log("test")
+    }
+  }, [])
 
-  // useEffect(() => {
-  //   if (timerFormatSecond !== null) {
-  //     const timerInterval = setInterval(() => {
-  //       let now = new Date().getTime()
+  useEffect(() => {
+    if (timerFormatSecond !== null) {
+      const timerInterval = setInterval(() => {
+        let now = new Date().getTime()
 
-  //       let distance = timerFormatSecond - now
+        let distance = timerFormatSecond - now
 
-  //       let days = Math.floor(distance / (1000 * 60 * 60 * 24))
-  //       let hours = Math.floor(
-  //         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  //       )
-  //       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-  //       let seconds = Math.floor((distance % (1000 * 60)) / 1000)
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24))
+        let hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        )
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
-  //       days = days.toString().padStart(2, "0")
-  //       hours = hours.toString().padStart(2, "0")
-  //       minutes = minutes.toString().padStart(2, "0")
-  //       seconds = seconds.toString().padStart(2, "0")
+        days = days.toString().padStart(2, "0")
+        hours = hours.toString().padStart(2, "0")
+        minutes = minutes.toString().padStart(2, "0")
+        seconds = seconds.toString().padStart(2, "0")
 
-  //       setDays(days)
-  //       setHours(hours)
-  //       setMinutes(minutes)
-  //       setSeconds(seconds)
-  //     }, 1000)
-  //     return () => {
-  //       clearInterval(timerInterval)
-  //     }
-  //   }
-  // }, [seconds])
+        setDays(days)
+        setHours(hours)
+        setMinutes(minutes)
+        setSeconds(seconds)
+      }, 1000)
+      return () => {
+        clearInterval(timerInterval)
+      }
+    }
+  }, [seconds])
 
   // useEffect(() => {
   //   if (startDeadLine) {
