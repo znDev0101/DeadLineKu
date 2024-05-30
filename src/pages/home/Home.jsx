@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import Header from "../../components/header/Header"
 import TimeDeadLine from "../../components/timedeadline/TimeDeadLine"
-import axios from "axios"
 
 import TableAccount from "../../components/tableAccount/TableAccount"
 import Note from "../../components/note/Note"
@@ -69,27 +68,31 @@ const Home = () => {
 
     setUuid(uuid)
 
-    // let converDays = parseInt(days)
-    // let convertHours = parseInt(hours)
-    // let convertMinutes = parseInt(minutes)
-    // let convertSeconds = parseInt(seconds)
+    let converDays = parseInt(days)
+    let convertHours = parseInt(hours)
+    let convertMinutes = parseInt(minutes)
+    let convertSeconds = parseInt(seconds)
 
-    // let totalSeconds =
-    //   converDays * 24 * 60 * 60 +
-    //   convertHours * 60 * 60 +
-    //   convertMinutes * 60 +
-    //   convertSeconds
+    let totalSeconds =
+      converDays * 24 * 60 * 60 +
+      convertHours * 60 * 60 +
+      convertMinutes * 60 +
+      convertSeconds
 
     const data = {
       uuid: uuid,
-      setTimer: 12345,
+      setTimer: totalSeconds,
     }
-    const response = await axios.post(
-      "https://deadline-api.vercel.app/timer/create-timer",
-      data
-    )
 
-    return response.data
+    const response = await fetch("http://localhost:3000/timer/create-timer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+
+    return response.json()
   }
 
   // FETCH DATA IF PARAMS URL NOT UNDEFINED
