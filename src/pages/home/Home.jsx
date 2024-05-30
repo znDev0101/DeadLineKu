@@ -22,7 +22,38 @@ const Home = () => {
   const [days, setDays] = useState("00")
   const [timerFormatSecond, setTimerFormatSecond] = useState(null)
 
-  const toggleStartDeadLine = async () => {
+  const createTimer = async () => {
+    // const uuid = crypto.randomUUID()
+    // setUuid(uuid)
+    // let converDays = parseInt(days)
+    // let convertHours = parseInt(hours)
+    // let convertMinutes = parseInt(minutes)
+    // let convertSeconds = parseInt(seconds)
+    // let totalSeconds =
+    //   converDays * 24 * 60 * 60 +
+    //   convertHours * 60 * 60 +
+    //   convertMinutes * 60 +
+    //   convertSeconds
+
+    const data = {
+      uuid: 12222,
+      setTimer: 55555,
+    }
+    const response = await fetch(
+      "https://deadline-api.vercel.app/timer/create-timer",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
+
+    return response.json()
+  }
+
+  const toggleStartDeadLine = () => {
     if (
       days !== "00" ||
       hours !== "00" ||
@@ -30,23 +61,7 @@ const Home = () => {
       seconds !== "00"
     ) {
       setStartDeadLine(!startDeadLine)
-      const data = {
-        uuid: 12222,
-        setTimer: 55555,
-      }
-      const response = await fetch(
-        "https://deadline-api.vercel.app/timer/create-timer",
-        {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      )
-
-      return response.json()
+      createTimer()
     } else {
       toast.warn("anda belum sama sekali menset time deadline!", {
         position: "top-center",
@@ -76,20 +91,6 @@ const Home = () => {
 
   const getInputSecond = (e) => {
     setSeconds(e.target.value)
-  }
-
-  const createTimer = async () => {
-    // const uuid = crypto.randomUUID()
-    // setUuid(uuid)
-    // let converDays = parseInt(days)
-    // let convertHours = parseInt(hours)
-    // let convertMinutes = parseInt(minutes)
-    // let convertSeconds = parseInt(seconds)
-    // let totalSeconds =
-    //   converDays * 24 * 60 * 60 +
-    //   convertHours * 60 * 60 +
-    //   convertMinutes * 60 +
-    //   convertSeconds
   }
 
   // FETCH DATA IF PARAMS URL NOT UNDEFINED
