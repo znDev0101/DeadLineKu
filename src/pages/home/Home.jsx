@@ -31,6 +31,7 @@ const Home = () => {
     ) {
       setStartDeadLine(!startDeadLine)
       createTimer()
+      console.log("test")
     } else {
       toast.warn("anda belum sama sekali menset time deadline!", {
         position: "top-center",
@@ -92,7 +93,12 @@ const Home = () => {
         body: JSON.stringify(data),
       }
     )
-    return response.json()
+      .then((res) => {
+        return res.json()
+      })
+      .catch((error) => {
+        console.log("Error message" + error)
+      })
   }
 
   // FETCH DATA IF PARAMS URL NOT UNDEFINED
