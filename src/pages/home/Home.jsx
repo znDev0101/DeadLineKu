@@ -10,7 +10,6 @@ import "react-toastify/dist/ReactToastify.css"
 
 import { MyContext } from "../../context/MyContext"
 import { useParams } from "react-router-dom"
-import axios from "axios"
 
 const Home = () => {
   const [startDeadLine, setStartDeadLine] = useState(false)
@@ -84,8 +83,6 @@ const Home = () => {
       uuid: uuid,
       setTimer: 55555,
     }
-
-    console.log(data)
 
     const response = await fetch(
       "https://deadline-api.vercel.app/timer/create-timer",
