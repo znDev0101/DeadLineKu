@@ -85,27 +85,13 @@ const Home = () => {
       setTimer: 55555,
     }
 
-    const response = await axios.post(
-      "https://deadline-api.vercel.app/timer/create-timer",
-      data
-    )
-
-    return response.data
-
-    // const response = await fetch(
-    //   "https://deadline-api.vercel.app/timer/create-timer",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       "Access-Control-Allow-Origin": "https://deadline-api.vercel.app",
-    //       "Access-Control-Allow-Credentials": true,
-    //     },
-    //     body: JSON.stringify(data),
-    //   }
-    // )
-
-    // return response.json()
+    await fetch("https://deadline-api.vercel.app/timer/create-timer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
   }
 
   // FETCH DATA IF PARAMS URL NOT UNDEFINED
