@@ -88,9 +88,10 @@ const Home = () => {
       "https://deadline-api.vercel.app/timer/create-timer",
       {
         method: "POST",
-        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
         },
         body: JSON.stringify(data),
       }
