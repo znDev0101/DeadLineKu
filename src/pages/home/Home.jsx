@@ -64,9 +64,9 @@ const Home = () => {
   }
 
   const createTimer = async () => {
-    const uuid = crypto.randomUUID()
+    // const uuid = crypto.randomUUID()
 
-    setUuid(uuid)
+    // setUuid(uuid)
 
     // let converDays = parseInt(days)
     // let convertHours = parseInt(hours)
