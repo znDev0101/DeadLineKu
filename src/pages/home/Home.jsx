@@ -84,13 +84,19 @@ const Home = () => {
       uuid: uuid,
       setTimer: totalSeconds,
     }
-    await axios
-      .post("https://deadline-api.vercel.app/timer/create-timer", {
-        data,
-      })
-      .then((res) => {
-        console.log(res)
-      })
+    const response = await axios.post(
+      "https://deadline-api.vercel.app/timer/create-timer",
+      data
+    )
+
+    return response.data
+    // await axios
+    //   .post("", {
+    //     data,
+    //   })
+    //   .then((res) => {
+    //     console.log(res)
+    //   })
     // const response = await fetch(
     //   "https://deadline-api.vercel.app/timer/create-timer",
     //   {
