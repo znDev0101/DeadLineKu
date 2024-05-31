@@ -40,7 +40,7 @@ const Home = () => {
       setTimer: 333333,
     }
     const response = await fetch(
-      "http://deadline-api-qgw4.onrender.com/timer/create-timer",
+      "https://deadline-api-qgw4.onrender.com/timer/create-timer",
       {
         method: "POST",
         headers: {
