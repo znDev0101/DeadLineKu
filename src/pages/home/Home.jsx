@@ -37,10 +37,10 @@ const Home = () => {
 
     const data = {
       uuid: createUuid,
-      setTimer: 101010,
+      setTimer: 333333,
     }
     const response = await fetch(
-      "https://deadline-api.vercel.app/timer/create-timer",
+      "https://deadline-api-qgw4.onrender.com/timer/create-timer",
       {
         method: "POST",
         headers: {
