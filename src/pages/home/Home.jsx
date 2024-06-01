@@ -37,7 +37,7 @@ const Home = () => {
 
     const data = {
       uuid: createUuid,
-      setTimer: 9999999,
+      setTimer: 12121212,
     }
     const response = await fetch(
       "https://deadline-api.vercel.app/timer/create-timer",
