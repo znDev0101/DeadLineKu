@@ -13,19 +13,27 @@ import { ToastContainer } from "react-toastify"
 import { MyContext } from "../../context/MyContext"
 
 const TableAccount = () => {
-  const [number, setNumber] = useState(0)
-  const [numberTable, setNumberTable] = useState(0)
-  const [namaAkun, setNamaAkun] = useState("")
-  const [noPembayaran, setNoPembayaran] = useState("")
   const [isClickDone, setIsClickDone] = useState(false)
 
   const tableRef = useRef()
 
-  const inputNamaAkunRef = useRef()
-
-  const newInputNamaAkunRef = useRef([])
-
-  const { startDeadLine, seconds, minutes, hours, day } = useContext(MyContext)
+  const {
+    startDeadLine,
+    seconds,
+    minutes,
+    hours,
+    day,
+    newInputNamaAkunRef,
+    number,
+    setNumber,
+    numberTable,
+    setNumberTable,
+    newInputNoPembayaran,
+    namaAkun,
+    setNamaAkun,
+    noPembayaran,
+    setNoPembayaran,
+  } = useContext(MyContext)
 
   const handleClickCopyAllNamaAkun = () => {
     let results = ""
@@ -35,9 +43,7 @@ const TableAccount = () => {
       }
     })
     navigator.clipboard.writeText(
-      inputNamaAkunRef?.current?.value !== 0
-        ? `${inputNamaAkunRef.current.value}\n${results}\n`
-        : `${results}\n`
+      namaAkun.length !== 0 ? `${namaAkun}\n${results}\n` : `${results}\n`
     )
     toast.success("copy success", {
       position: "top-center",
@@ -75,14 +81,6 @@ const TableAccount = () => {
   }
 
   useEffect(() => {
-    if (numberTable.length !== 0) {
-      for (let i = 1; i < numberTable; i++) {
-        newInputNamaAkunRef.current.push(React.createRef())
-      }
-    }
-  }, [numberTable])
-
-  useEffect(() => {
     const time = setTimeout(() => {
       setNumberTable(number)
     }, 2000)
@@ -109,7 +107,6 @@ const TableAccount = () => {
             placeholder="KETIK DISINI..."
             value={namaAkun}
             onChange={(e) => setNamaAkun(e.target.value)}
-            ref={inputNamaAkunRef}
             disabled={
               startDeadLine &&
               seconds === "00" &&
@@ -131,7 +128,7 @@ const TableAccount = () => {
         <div className="flex px-1 items-center text-white  border border-l-black border-b-black">
           <div className="grid grid-rows-[2fr_1fr]">
             <input
-              type="text"
+              type="number"
               className=" w-full h-full bg-transparent ps-4 text-black"
               name="noPembayaran"
               value={noPembayaran}
@@ -199,7 +196,8 @@ const TableAccount = () => {
               <NewTable
                 key={i}
                 index={i}
-                ref={newInputNamaAkunRef.current[i]}
+                namaAkunRef={newInputNamaAkunRef.current[i]}
+                noPembayaranRef={newInputNoPembayaran.current[i]}
               />
             )
           })

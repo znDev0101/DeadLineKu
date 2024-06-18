@@ -7,13 +7,13 @@ const TimeDeadLine = () => {
     startDeadLine,
     toggleStartDeadLine,
     days,
-    getInputDay,
+    setDays,
     hours,
-    getInputHours,
+    setHours,
     minutes,
-    getInputMinutes,
+    setMinutes,
     seconds,
-    getInputSecond,
+    setSeconds,
   } = useContext(MyContext)
 
   return (
@@ -45,7 +45,7 @@ const TimeDeadLine = () => {
                   type="text"
                   placeholder="00"
                   value={days === "00" ? "" : days}
-                  onChange={getInputDay}
+                  onChange={(e) => setDays(e.target.value)}
                   className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
                 />
               )}
@@ -72,7 +72,7 @@ const TimeDeadLine = () => {
                   type="text"
                   placeholder="00"
                   value={hours === "00" ? "" : hours}
-                  onChange={getInputHours}
+                  onChange={(e) => setHours(e.target.value)}
                   className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
                 />
               )}
@@ -101,7 +101,7 @@ const TimeDeadLine = () => {
                   type="text"
                   placeholder="00"
                   value={minutes === "00" ? "" : minutes}
-                  onChange={getInputMinutes}
+                  onChange={(e) => setMinutes(e.target.value)}
                   className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
                 />
               )}
@@ -128,7 +128,7 @@ const TimeDeadLine = () => {
                   type="text"
                   placeholder="00"
                   value={seconds === "00" ? "" : seconds}
-                  onChange={getInputSecond}
+                  onChange={(e) => setSeconds(e.target.value)}
                   className={` text-center w-10 bg-transparent text-4xl  focus-within:outline-none  `}
                 />
               )}

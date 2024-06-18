@@ -11,17 +11,14 @@ const Note = () => {
   const secondTextAreaRef = useRef()
   const namaJobsRef = useRef(null)
 
-  const { startDeadLine, setStartDeadLine } = useContext(MyContext)
-
-  const handleChangeCatatan = (e) => {
-    const val = e.target.value
-    setValueCatatan(val)
-  }
-
-  const handleChangeJobs = (e) => {
-    const val = e.target.value
-    setValueNamaJobs(val)
-  }
+  const {
+    startDeadLine,
+    setStartDeadLine,
+    namaJobs,
+    setNamaJobs,
+    catatan,
+    setCatatan,
+  } = useContext(MyContext)
 
   const checkIfInputUrl = (input) => {
     let urlPattern =
@@ -33,8 +30,6 @@ const Note = () => {
         url.push(str)
       }
     })
-
-    console.log(url)
   }
 
   useEffect(() => {
@@ -42,7 +37,7 @@ const Note = () => {
   }, [startDeadLine])
 
   return (
-    <div className="w-full mt-36 px-2 grid grid-cols-2 ">
+    <div className="w-full mt-12 px-2 grid grid-cols-2 ">
       <div className="flex flex-col bg-[#288BFF] rounded-t-xl ">
         <label className="ps-4 pt-2 text-white font-bold">NAMA JOBS:</label>
         {startDeadLine ? (
@@ -52,9 +47,9 @@ const Note = () => {
             name="nama-jobs"
             className="w-full px-4 h-28 bg-transparent  placeholder:text-sm placeholder:text-white text-white focus-within:outline-none"
             placeholder="Ketik Disini..."
-            value={valueNamaJobs}
+            value={namaJobs}
             rows={1}
-            onChange={handleChangeJobs}
+            onChange={(e) => setNamaJobs(e.target.value)}
             ref={firstTextAreaRef}
             disabled={startDeadLine}></textarea>
         )}
@@ -65,9 +60,9 @@ const Note = () => {
           name="nama-jobs"
           className="w-full px-4 h-28 bg-transparent  placeholder:text-sm placeholder:text-white text-white focus-within:outline-none  "
           placeholder="Ketik Disini..."
-          value={valueCatatan}
+          value={catatan}
           rows={1}
-          onChange={handleChangeCatatan}
+          onChange={(e) => setCatatan(e.target.value)}
           ref={secondTextAreaRef}
           disabled={startDeadLine}></textarea>
       </div>

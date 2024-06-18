@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useContext } from "react"
+import React, { useState, useEffect, forwardRef, useContext } from "react"
 import { MyContext } from "../../context/MyContext"
 
 import {
@@ -10,14 +10,21 @@ import { toast, Bounce } from "react-toastify"
 
 import "react-toastify/dist/ReactToastify.css"
 
-const NewTable = forwardRef(({ index }, ref) => {
+const NewTable = ({ index, namaAkunRef, noPembayaranRef }) => {
   const [noPembayaran, setNoPembayaran] = useState("")
   const [namaAkun, setNamaAkun] = useState("")
 
   const [isClickDone, setIsClickDone] = useState(false)
 
-  // const newInputNamaAkunRef = useRef()
-  const { startDeadLine, seconds, minutes, hours, day } = useContext(MyContext)
+  const {
+    startDeadLine,
+    seconds,
+    minutes,
+    hours,
+    day,
+    setResetPage,
+    resetPage,
+  } = useContext(MyContext)
 
   const handleDeleteNoPembayaran = () => {
     if (noPembayaran.length !== 0 || namaAkun.length !== 0) {
@@ -54,6 +61,13 @@ const NewTable = forwardRef(({ index }, ref) => {
     }
   }
 
+  useEffect(() => {
+    if (resetPage) {
+      setNamaAkun("")
+      setNoPembayaran("")
+    }
+  }, [resetPage])
+
   return (
     <>
       <div className="h-28 text-center px-1  text-white relative border border-b-black">
@@ -71,7 +85,7 @@ const NewTable = forwardRef(({ index }, ref) => {
             day === "00"
           }
           onChange={(e) => setNamaAkun(e.target.value)}
-          ref={ref}
+          ref={namaAkunRef}
         />
         <div className="text-black absolute flex flex-col items-center w-8 left-0 top-0 pt-3 border border-r-black h-full">
           <span>{index + 2}</span>
@@ -84,7 +98,7 @@ const NewTable = forwardRef(({ index }, ref) => {
       <div className="flex px-1 items-center text-white  border border-l-black border-b-black">
         <div className="grid grid-rows-[2fr_1fr]">
           <input
-            type="text"
+            type="number"
             className=" w-full h-full bg-transparent ps-4 text-black"
             placeholder="KETIK DISINI..."
             value={noPembayaran}
@@ -96,6 +110,7 @@ const NewTable = forwardRef(({ index }, ref) => {
               day === "00"
             }
             onChange={(e) => setNoPembayaran(e.target.value)}
+            ref={noPembayaranRef}
           />
           <div className="flex items-center justify-between">
             <MdOutlineContentCopy
@@ -111,5 +126,5 @@ const NewTable = forwardRef(({ index }, ref) => {
       </div>
     </>
   )
-})
+}
 export default NewTable

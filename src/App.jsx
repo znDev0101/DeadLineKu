@@ -1,14 +1,10 @@
-import { useState } from "react"
-import reactLogo from "./assets/react.svg"
-import viteLogo from "/vite.svg"
 import "./App.css"
-import Home from "./pages/home/Home"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Root from "./routes/Root"
+import Timer from "./pages/timer/Timer"
+import NoteTimer from "./components/notetimer/NoteTimer"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -16,7 +12,11 @@ function App() {
     },
     {
       path: "/:uuidUrl",
-      element: <Root />,
+      element: <Timer />,
+    },
+    {
+      path: "/:test",
+      element: <Timer />,
     },
   ])
 

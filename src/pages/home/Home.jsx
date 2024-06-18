@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import Header from "../../components/header/Header"
 import TimeDeadLine from "../../components/timedeadline/TimeDeadLine"
 
@@ -7,65 +7,171 @@ import Note from "../../components/note/Note"
 import { toast, Bounce } from "react-toastify"
 
 import "react-toastify/dist/ReactToastify.css"
+import { v4 as uuidv4 } from "uuid"
 
 import { MyContext } from "../../context/MyContext"
-import { useParams } from "react-router-dom"
+import axios from "axios"
+
+axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*"
+axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8"
 
 const Home = () => {
   const [startDeadLine, setStartDeadLine] = useState(false)
-  const { uuidUrl } = useParams()
 
   const [uuid, setUuid] = useState("")
-  const [seconds, setSeconds] = useState("00")
-  const [minutes, setMinutes] = useState("00")
-  const [hours, setHours] = useState("00")
-  const [days, setDays] = useState("00")
-  const [timerFormatSecond, setTimerFormatSecond] = useState(null)
 
-  const createTimer = async () => {
-    const createUuid = crypto.randomUUID()
+  // let getCurrentSeconds =
+  //   seconds === "00"
+  //     ? date.getSeconds()
+  //     : date.getSeconds() + parseInt(seconds, 10)
 
-    // let converDays = parseInt(days)
-    // let convertHours = parseInt(hours)
-    // let convertMinutes = parseInt(minutes)
-    // let convertSeconds = parseInt(seconds)
-    // let totalSeconds =
-    //   converDays * 24 * 60 * 60 +
-    //   convertHours * 60 * 60 +
-    //   convertMinutes * 60 +
-    //   convertSeconds
+  const [namaAkun, setNamaAkun] = useState("")
+  const [noPembayaran, setNoPembayaran] = useState("")
 
-    const data = {
-      uuid: createUuid,
-      setTimer: 12121212,
-    }
-    const response = await fetch(
-      "https://deadline-api.vercel.app/timer/create-timer",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+  const [numberTable, setNumberTable] = useState(0)
+
+  const [number, setNumber] = useState(0)
+
+  const newInputNamaAkunRef = useRef([])
+  const newInputNoPembayaran = useRef([])
+  const [namaJobs, setNamaJobs] = useState("")
+  const [catatan, setCatatan] = useState("")
+  const [resetPage, setResetPage] = useState(false)
+  // const [timeDeadLine, setTimeDeadLine] = useState(0)
+
+  // const createTimer = async () => {
+  //   const createUuid = crypto.randomUUID()
+  //   const now = new Date().getTime()
+  //   setUuid(createUuid)
+
+  //   let convertDays = parseInt(days)
+  //   let convertHours = parseInt(hours)
+  //   let convertMinutes = parseInt(minutes)
+  //   let convertSeconds = parseInt(seconds)
+  //   let totalSeconds =
+  //     (days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds) * 1000
+
+  //   setEndTime(now + totalSeconds)
+
+  //   const data = {
+  //     uuid: createUuid,
+  //     timer: totalSeconds,
+  //     namaakun: [namaAkun],
+  //     nopembayaran: [noPembayaran],
+  //   }
+
+  //   newInputNamaAkunRef.current.forEach((datas) => {
+  //     data.namaakun.push(datas.current.value)
+  //   })
+
+  //   newInputNoPembayaran.current.forEach((datas) => {
+  //     data.nopembayaran.push(datas.current.value)
+  //   })
+
+  //   const response = await fetch(
+  //     "http://localhost:3000/api/v1/settimers/create-timer",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(data),
+  //     }
+  //   )
+
+  //   return response.json()
+  // }
+
+  // const date = new Date()
+  // const [days, setDays] = useState("00")
+
+  // const [hours, setHours] = useState("00")
+
+  // const [minutes, setMinutes] = useState("00")
+
+  // const [seconds, setSeconds] = useState("00")
+
+  // date.getFullYear(),
+  // date.getMonth(),
+  // date.getDate() + parseInt(days, 10),
+  // date.getHours() + parseInt(hours, 10),
+  // date.getMinutes() + parseInt(minutes, 10),
+  // date.getSeconds() + parseInt(seconds, 10)
+
+  // const toggleStartDeadLine = () => {
+  //   if (
+  //     days !== "00" ||
+  //     hours !== "00" ||
+  //     minutes !== "00" ||
+  //     seconds !== "00"
+  //   ) {
+  //     setStartDeadLine(!startDeadLine)
+  //     const getCurrentHours = String(date.getHours() + parseInt(hours, 10))
+
+  //     const getCurrentMonth = String(date.getMonth())
+  //     const getCurrentDays = String(date.getDate() + parseInt(days, 10))
+  //     const getCurrentYear = String(date.getFullYear())
+  //     const getCurrentMinutes = String(
+  //       date.getMinutes() + parseInt(minutes, 10)
+  //     )
+  //     const getCurrentSeconds = String(
+  //       date.getSeconds() + parseInt(seconds, 10)
+  //     )
+
+  //     const targetTimeDeadline = new Date(
+  //       `${getCurrentMonth} ${getCurrentDays}, ${getCurrentYear} ${getCurrentHours}:${getCurrentMinutes}:${getCurrentSeconds}`
+  //     ).getTime()
+
+  //     setTimeDeadLine(targetTimeDeadline)
+  //   } else {
+  //     toast.warn("anda belum sama sekali menset time deadline!", {
+  //       position: "top-center",
+  //       autoClose: 1500,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //       transition: Bounce,
+  //     })
+  //   }
+  // }
+
+  useEffect(() => {
+    if (numberTable.length !== 0) {
+      for (let i = 1; i < numberTable; i++) {
+        newInputNamaAkunRef.current.push(React.createRef())
+        newInputNoPembayaran.current.push(React.createRef())
       }
-    )
+    }
+  }, [numberTable])
 
-    return response.json()
-  }
+  const handleInsertData = async () => {
+    try {
+      const createUuid = uuidv4()
+      setUuid(createUuid)
 
-  const toggleStartDeadLine = () => {
-    if (
-      days !== "00" ||
-      hours !== "00" ||
-      minutes !== "00" ||
-      seconds !== "00"
-    ) {
-      setStartDeadLine(!startDeadLine)
-      createTimer()
-    } else {
-      toast.warn("anda belum sama sekali menset time deadline!", {
+      const data = {
+        uuid: createUuid,
+        timer: 752344,
+        namaakun: [namaAkun],
+        nopembayaran: [noPembayaran],
+        namajobs: namaJobs,
+        catatan: catatan,
+      }
+
+      newInputNamaAkunRef.current.forEach((datas) => {
+        data.namaakun.push(datas.current.value)
+      })
+
+      newInputNoPembayaran.current.forEach((datas) => {
+        data.nopembayaran.push(datas.current.value)
+      })
+
+      toast.success("insert data berhasil", {
         position: "top-center",
-        autoClose: 1500,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -74,61 +180,47 @@ const Home = () => {
         theme: "light",
         transition: Bounce,
       })
+
+      const response = await axios.post(
+        "https://api-v1.timlist.my.id/api/timer",
+        data
+      )
+      return response.data
+    } catch (error) {
+      console.log("Error Message" + error.message)
     }
   }
 
-  const getInputDay = (e) => {
-    setDays(e.target.value)
-  }
+  // useEffect(() => {
+  //   if (startDeadLine) {
+  //     const time = setInterval(() => {
+  //       // *Get today's date and time
+  //       const now = new Date().getTime()
 
-  const getInputHours = (e) => {
-    setHours(e.target.value)
-  }
+  //       // *Find the distance between now and the count down date
+  //       const distance = timeDeadLine - now
 
-  const getInputMinutes = (e) => {
-    setMinutes(e.target.value)
-  }
+  //       let days = Math.floor(distance / (1000 * 60 * 60 * 24))
+  //       let hours = Math.floor(
+  //         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  //       )
+  //       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+  //       let seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
-  const getInputSecond = (e) => {
-    setSeconds(e.target.value)
-  }
+  //       setDays(days)
+  //       setHours(hours)
+  //       setMinutes(minutes)
+  //       setSeconds(seconds)
 
-  // FETCH DATA IF PARAMS URL NOT UNDEFINED
-  useEffect(() => {
-    if (uuidUrl !== undefined) {
-      console.log("test")
-    }
-  }, [])
-
-  useEffect(() => {
-    if (timerFormatSecond !== null) {
-      const timerInterval = setInterval(() => {
-        let now = new Date().getTime()
-
-        let distance = timerFormatSecond - now
-
-        let days = Math.floor(distance / (1000 * 60 * 60 * 24))
-        let hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        )
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000)
-
-        days = days.toString().padStart(2, "0")
-        hours = hours.toString().padStart(2, "0")
-        minutes = minutes.toString().padStart(2, "0")
-        seconds = seconds.toString().padStart(2, "0")
-
-        setDays(days)
-        setHours(hours)
-        setMinutes(minutes)
-        setSeconds(seconds)
-      }, 1000)
-      return () => {
-        clearInterval(timerInterval)
-      }
-    }
-  }, [seconds])
+  //       if (distance < 0) {
+  //         clearInterval(time)
+  //       }
+  //     }, 1000)
+  //     return () => {
+  //       clearInterval(time)
+  //     }
+  //   }
+  // }, [seconds, startDeadLine])
 
   // useEffect(() => {
   //   if (startDeadLine) {
@@ -225,19 +317,34 @@ const Home = () => {
     <MyContext.Provider
       value={{
         startDeadLine,
-        toggleStartDeadLine,
         uuid,
-        days,
-        getInputDay,
-        hours,
-        getInputHours,
-        minutes,
-        getInputMinutes,
-        seconds,
-        getInputSecond,
+        setUuid,
+        namaJobs,
+        setNamaJobs,
+        catatan,
+        setCatatan,
+        newInputNamaAkunRef,
+        number,
+        setNumber,
+        numberTable,
+        setNumberTable,
+        newInputNoPembayaran,
+        namaAkun,
+        setNamaAkun,
+        noPembayaran,
+        setNoPembayaran,
+        resetPage,
+        setResetPage,
       }}>
       <Header />
-      <TimeDeadLine />
+      {/* <TimeDeadLine /> */}
+      <div className="flex justify-center mt-28">
+        <button
+          className=" border border-gray-500 px-5 py-1 rounded-full"
+          onClick={handleInsertData}>
+          Insert Data
+        </button>
+      </div>
       <Note />
       <TableAccount />
     </MyContext.Provider>
