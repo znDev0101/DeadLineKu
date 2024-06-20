@@ -4,6 +4,7 @@ import {
   MdOutlineContentCopy,
   MdOutlineDeleteForever,
 } from "react-icons/md"
+import { FiSave } from "react-icons/fi"
 import { HiOutlineDotsHorizontal } from "react-icons/hi"
 import NewTable from "../newtable/NewTable"
 import { toast, Bounce } from "react-toastify"
@@ -151,6 +152,7 @@ const TableAccount = () => {
                 className="text-[#FF0000] text-4xl"
                 onClick={handleDeleteNoPembayaran}
               />
+              <FiSave className="text-green-600 text-3xl" />
             </div>
           </div>
         </div>
@@ -185,6 +187,7 @@ const TableAccount = () => {
                 <div className="flex items-center justify-between">
                   <MdOutlineContentCopy className="text-[#128DFF] text-3xl" />
                   <MdOutlineDeleteForever className="text-[#FF0000] text-4xl" />
+                  <FiSave className="text-green-600 text-3xl" />
                 </div>
               </div>
             </div>

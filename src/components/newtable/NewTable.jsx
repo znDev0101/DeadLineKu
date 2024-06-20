@@ -1,6 +1,8 @@
 import React, { useState, useEffect, forwardRef, useContext } from "react"
 import { MyContext } from "../../context/MyContext"
 
+import { FiSave } from "react-icons/fi"
+
 import {
   MdDoneOutline,
   MdOutlineContentCopy,
@@ -121,6 +123,7 @@ const NewTable = ({ index, namaAkunRef, noPembayaranRef }) => {
               className="text-[#FF0000] text-4xl"
               onClick={handleDeleteNoPembayaran}
             />
+            <FiSave className="text-green-600 text-3xl" />
           </div>
         </div>
       </div>
