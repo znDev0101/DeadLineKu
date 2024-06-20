@@ -5,41 +5,10 @@ import { MyContext } from "../../context/MyContext"
 import { toast, Bounce } from "react-toastify"
 
 import "react-toastify/dist/ReactToastify.css"
+import { Link } from "react-router-dom"
 
 const Header = () => {
-  const {
-    uuid,
-    setUuid,
-    days,
-    hours,
-    minutes,
-    seconds,
-    setNamaJobs,
-    setCatatan,
-    newInputNamaAkunRef,
-    newInputNoPembayaran,
-    setResetPage,
-    setNumber,
-    setNoPembayaran,
-    setNamaAkun,
-  } = useContext(MyContext)
-
-  const handleAllReset = () => {
-    setNamaJobs("")
-    setCatatan("")
-    setNamaAkun("")
-    setNoPembayaran("")
-    setUuid("")
-    setResetPage(true)
-    setNumber(0)
-    while (
-      newInputNamaAkunRef.current.length > 0 &&
-      newInputNoPembayaran.current.length > 0
-    ) {
-      newInputNamaAkunRef.current.pop()
-      newInputNoPembayaran.current.pop()
-    }
-  }
+  const { uuid, setUuid, days, hours, minutes, seconds } = useContext(MyContext)
 
   const handleShareLink = () => {
     if (
@@ -67,12 +36,12 @@ const Header = () => {
 
   return (
     <header className="flex justify-between px-4 py-3">
-      <div
-        className="flex items-center gap-x-2 hover:cursor-pointer"
-        onClick={handleAllReset}>
-        <FaPlus />
-        <h1 className="font-bold ">HALAMAN BARU</h1>
-      </div>
+      <Link to={"/"} target="_blank">
+        <div className="flex items-center gap-x-2 hover:cursor-pointer">
+          <FaPlus />
+          <h1 className="font-bold ">HALAMAN BARU</h1>
+        </div>
+      </Link>
       <div
         className="flex items-center gap-x-2 hover:cursor-pointer"
         onClick={handleShareLink}>

@@ -191,6 +191,23 @@ const Home = () => {
     }
   }
 
+  useEffect(() => {
+    setNamaJobs("")
+    setCatatan("")
+    setNamaAkun("")
+    setNoPembayaran("")
+    setUuid("")
+    setResetPage(true)
+    setNumber(0)
+    while (
+      newInputNamaAkunRef.current.length > 0 &&
+      newInputNoPembayaran.current.length > 0
+    ) {
+      newInputNamaAkunRef.current.pop()
+      newInputNoPembayaran.current.pop()
+    }
+  }, [])
+
   // useEffect(() => {
   //   if (startDeadLine) {
   //     const time = setInterval(() => {

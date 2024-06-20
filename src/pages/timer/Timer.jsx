@@ -15,7 +15,6 @@ const Timer = () => {
       `https://api-v1.timlist.my.id/api/timer/${uuidUrl}`
     )
     const results = await response.data
-    console.log(results)
     setData(results)
   }
 
