@@ -11,7 +11,7 @@ function App() {
       element: <Root />,
     },
     {
-      path: "/:uuidUrl",
+      path: "/:id",
       element: <Timer />,
     },
     {

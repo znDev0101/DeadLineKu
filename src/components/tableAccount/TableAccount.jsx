@@ -24,13 +24,12 @@ const TableAccount = () => {
     minutes,
     hours,
     day,
-    newInputNamaAkunRef,
     number,
     setNumber,
     numberTable,
     setNumberTable,
-    newInputNoPembayaran,
     namaAkun,
+    newInputNamaAkunRef,
     setNamaAkun,
     noPembayaran,
     setNoPembayaran,
@@ -200,7 +199,6 @@ const TableAccount = () => {
                 key={i}
                 index={i}
                 namaAkunRef={newInputNamaAkunRef.current[i]}
-                noPembayaranRef={newInputNoPembayaran.current[i]}
               />
             )
           })

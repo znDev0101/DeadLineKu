@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css"
 import { Link } from "react-router-dom"
 
 const Header = () => {
-  const { uuid, setUuid, days, hours, minutes, seconds } = useContext(MyContext)
+  const { days, hours, minutes, seconds, dataPost } = useContext(MyContext)
 
   const handleShareLink = () => {
     if (
@@ -17,7 +17,7 @@ const Header = () => {
       minutes !== "00" ||
       seconds !== "00"
     ) {
-      navigator.clipboard.writeText(location.href + uuid)
+      navigator.clipboard.writeText(location.href + dataPost._id)
       toast.success("bagikan link berhasil di copy", {
         position: "top-center",
         autoClose: 4000,

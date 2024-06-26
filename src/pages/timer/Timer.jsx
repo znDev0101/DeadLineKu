@@ -4,15 +4,17 @@ import { FaPlus } from "react-icons/fa6"
 import { IoLinkSharp } from "react-icons/io5"
 import { useParams } from "react-router-dom"
 import NoteTimer from "../../components/notetimer/NoteTimer"
-import TableAccountTimer from "../../components/tableaccounttimer/TableAccountTimer"
+import TableTimer from "../../components/tabletimer/TableTimer"
+import { ToastContainer } from "react-toastify"
 
 const Timer = () => {
-  const { uuidUrl } = useParams()
+  const { id } = useParams()
+
   const [data, setData] = useState([])
 
   const getData = async () => {
     const response = await axios.get(
-      `https://api-v1.timlist.my.id/api/timer/${uuidUrl}`
+      `https://deadline-ku-api.vercel.app/api/timer/${id}`
     )
     const results = await response.data
     setData(results)
@@ -34,8 +36,9 @@ const Timer = () => {
           <h1 className="font-bold">BAGIKAN LINK</h1>
         </div>
       </header>
+      <ToastContainer />
       <NoteTimer data={data} />
-      <TableAccountTimer data={data} />
+      <TableTimer data={data} />
     </>
   )
 }

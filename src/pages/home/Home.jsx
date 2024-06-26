@@ -7,23 +7,15 @@ import Note from "../../components/note/Note"
 import { toast, Bounce } from "react-toastify"
 
 import "react-toastify/dist/ReactToastify.css"
-import { v4 as uuidv4 } from "uuid"
 
 import { MyContext } from "../../context/MyContext"
-import axios from "axios"
-
-axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*"
-axios.defaults.headers.post["Content-Type"] = "application/json;charset=utf-8"
 
 const Home = () => {
   const [startDeadLine, setStartDeadLine] = useState(false)
 
-  const [uuid, setUuid] = useState("")
+  const [dataPost, setDataPost] = useState([])
 
-  // let getCurrentSeconds =
-  //   seconds === "00"
-  //     ? date.getSeconds()
-  //     : date.getSeconds() + parseInt(seconds, 10)
+  const newInputNamaAkunRef = useRef([])
 
   const [namaAkun, setNamaAkun] = useState("")
   const [noPembayaran, setNoPembayaran] = useState("")
@@ -32,11 +24,12 @@ const Home = () => {
 
   const [number, setNumber] = useState(0)
 
-  const newInputNamaAkunRef = useRef([])
-  const newInputNoPembayaran = useRef([])
   const [namaJobs, setNamaJobs] = useState("")
   const [catatan, setCatatan] = useState("")
   const [resetPage, setResetPage] = useState(false)
+
+  const [loading, setLoading] = useState(false)
+
   // const [timeDeadLine, setTimeDeadLine] = useState(0)
 
   // const createTimer = async () => {
@@ -138,37 +131,29 @@ const Home = () => {
   //   }
   // }
 
-  useEffect(() => {
-    if (numberTable.length !== 0) {
-      for (let i = 1; i < numberTable; i++) {
-        newInputNamaAkunRef.current.push(React.createRef())
-        newInputNoPembayaran.current.push(React.createRef())
-      }
-    }
-  }, [numberTable])
-
   const handleInsertData = async () => {
+    const data = {
+      timer: 2500,
+      namajobs: namaJobs,
+      catatan: catatan,
+      namaakun: new Array(parseInt(number)).fill(""),
+      nopembayaran: new Array(parseInt(number)).fill(0),
+    }
     try {
-      const createUuid = uuidv4()
-      setUuid(createUuid)
-
-      const data = {
-        uuid: createUuid,
-        timer: 752344,
-        namaakun: [namaAkun],
-        nopembayaran: [noPembayaran],
-        namajobs: namaJobs,
-        catatan: catatan,
-      }
-
-      newInputNamaAkunRef.current.forEach((datas) => {
-        data.namaakun.push(datas.current.value)
-      })
-
-      newInputNoPembayaran.current.forEach((datas) => {
-        data.nopembayaran.push(datas.current.value)
-      })
-
+      setLoading(true)
+      toast.loading("Loading....")
+      const response = await fetch(
+        "https://deadline-ku-api.vercel.app/api/timer",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      )
+      const resultPost = await response.json()
+      setDataPost(resultPost)
       toast.success("insert data berhasil", {
         position: "top-center",
         autoClose: 2000,
@@ -180,31 +165,30 @@ const Home = () => {
         theme: "light",
         transition: Bounce,
       })
-
-      const response = await axios.post(
-        "https://api-v1.timlist.my.id/api/timer",
-        data
-      )
-      return response.data
     } catch (error) {
       console.log("Error Message" + error.message)
+    } finally {
+      setLoading(false)
     }
   }
+
+  useEffect(() => {
+    if (numberTable.length !== 0) {
+      for (let i = 1; i < numberTable; i++) {
+        newInputNamaAkunRef.current.push(React.createRef())
+      }
+    }
+  }, [numberTable])
 
   useEffect(() => {
     setNamaJobs("")
     setCatatan("")
     setNamaAkun("")
     setNoPembayaran("")
-    setUuid("")
     setResetPage(true)
     setNumber(0)
-    while (
-      newInputNamaAkunRef.current.length > 0 &&
-      newInputNoPembayaran.current.length > 0
-    ) {
+    while (newInputNamaAkunRef.current.length > 0) {
       newInputNamaAkunRef.current.pop()
-      newInputNoPembayaran.current.pop()
     }
   }, [])
 
@@ -334,8 +318,6 @@ const Home = () => {
     <MyContext.Provider
       value={{
         startDeadLine,
-        uuid,
-        setUuid,
         namaJobs,
         setNamaJobs,
         catatan,
@@ -345,11 +327,11 @@ const Home = () => {
         setNumber,
         numberTable,
         setNumberTable,
-        newInputNoPembayaran,
         namaAkun,
         setNamaAkun,
         noPembayaran,
         setNoPembayaran,
+        dataPost,
         resetPage,
         setResetPage,
       }}>
@@ -358,8 +340,9 @@ const Home = () => {
       <div className="flex justify-center mt-28">
         <button
           className=" border border-gray-500 px-5 py-1 rounded-full"
-          onClick={handleInsertData}>
-          Insert Data
+          onClick={handleInsertData}
+          disabled={loading}>
+          {loading ? "Loading..." : "Insert Data"}
         </button>
       </div>
       <Note />

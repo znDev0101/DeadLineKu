@@ -12,21 +12,14 @@ import { toast, Bounce } from "react-toastify"
 
 import "react-toastify/dist/ReactToastify.css"
 
-const NewTable = ({ index, namaAkunRef, noPembayaranRef }) => {
+const NewTable = ({ index, namaAkunRef }) => {
   const [noPembayaran, setNoPembayaran] = useState("")
   const [namaAkun, setNamaAkun] = useState("")
 
   const [isClickDone, setIsClickDone] = useState(false)
 
-  const {
-    startDeadLine,
-    seconds,
-    minutes,
-    hours,
-    day,
-    setResetPage,
-    resetPage,
-  } = useContext(MyContext)
+  const { startDeadLine, seconds, minutes, hours, day, resetPage } =
+    useContext(MyContext)
 
   const handleDeleteNoPembayaran = () => {
     if (noPembayaran.length !== 0 || namaAkun.length !== 0) {
@@ -112,7 +105,6 @@ const NewTable = ({ index, namaAkunRef, noPembayaranRef }) => {
               day === "00"
             }
             onChange={(e) => setNoPembayaran(e.target.value)}
-            ref={noPembayaranRef}
           />
           <div className="flex items-center justify-between">
             <MdOutlineContentCopy
