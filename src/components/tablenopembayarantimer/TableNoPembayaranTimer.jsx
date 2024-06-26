@@ -19,7 +19,8 @@ const TableNoPembayaranTimer = ({
 }) => {
   const { id } = useParams()
 
-  const [loading, setLoading] = useState(false)
+  const [loadingUpdateData, setLoadingUpdateData] = useState(false)
+  const [loadingDeleteData, setLoadingDeleteData] = useState(false)
 
   const handleChange = (e) => {
     onChange(index, e.target.value)
@@ -112,6 +113,22 @@ const TableNoPembayaranTimer = ({
     }
   }
 
+  const handleCopyNoPembayaran = () => {
+    navigator.clipboard.writeText(value)
+    toast.success("copy success", {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    })
+  }
+
+  // HANDLE DELETE
   const handleDelete = async () => {
     // JUST FOR DELTE FORM
     let deleteAkun = [...dataInputNamaAkun]
@@ -124,7 +141,12 @@ const TableNoPembayaranTimer = ({
     // JUST FOR DELTE FORM
 
     if (dataInputNamaAkun[index] !== "" && value !== "") {
-      setLoading(true)
+      setLoadingDeleteData(true)
+      const id = toast.loading("Loading...", {
+        position: "top-center",
+        theme: "light",
+        transition: Bounce,
+      })
       try {
         const namaakunDeleteData = deleteNamaAkun()
         const nopembayaranDeleteData = deleteNoPembayaran()
@@ -133,8 +155,10 @@ const TableNoPembayaranTimer = ({
           namaakunDeleteData,
           nopembayaranDeleteData,
         ])
-        toast.success("hapus data berhasil 🗑️", {
+        toast.update(id, {
+          render: "hapus data berhasil 🗑️",
           position: "top-center",
+          type: "success",
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -142,19 +166,26 @@ const TableNoPembayaranTimer = ({
           draggable: true,
           progress: undefined,
           theme: "light",
+          isLoading: false,
           transition: Bounce,
         })
       } catch (error) {
         console.log("error message :" + error)
       } finally {
-        setLoading(false)
+        setLoadingDeleteData(false)
       }
     }
   }
 
+  // HANDLE UPDATE
   const handleUpdateData = async () => {
     if (dataInputNamaAkun[index] !== "" && value !== "") {
-      setLoading(true)
+      setLoadingUpdateData(true)
+      const id = toast.loading("Loading...", {
+        position: "top-center",
+        theme: "light",
+        transition: Bounce,
+      })
       try {
         const namaakunNewData = updateNamaAkun()
         const noPembayaranNewData = updateNoPembayaran()
@@ -164,8 +195,10 @@ const TableNoPembayaranTimer = ({
           noPembayaranNewData,
         ])
 
-        toast.success("insert data berhasil", {
+        toast.update(id, {
+          render: "Insert data berhasil",
           position: "top-center",
+          type: "success",
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -173,12 +206,13 @@ const TableNoPembayaranTimer = ({
           draggable: true,
           progress: undefined,
           theme: "light",
+          isLoading: false,
           transition: Bounce,
         })
       } catch (error) {
         console.log("error message : " + error)
       } finally {
-        setLoading(false)
+        setLoadingUpdateData(false)
       }
     }
   }
@@ -192,12 +226,14 @@ const TableNoPembayaranTimer = ({
         onChange={handleChange}
       />
       <div className="flex items-center justify-between px-1">
-        <MdOutlineContentCopy className="text-[#128DFF] text-3xl" />
-        <MdOutlineDeleteForever
-          className="text-[#FF0000] text-4xl"
-          onClick={handleDelete}
+        <MdOutlineContentCopy
+          className="text-[#128DFF] text-3xl"
+          onClick={handleCopyNoPembayaran}
         />
-        <button onClick={handleUpdateData} disabled={loading}>
+        <button onClick={handleDelete} disabled={loadingDeleteData}>
+          <MdOutlineDeleteForever className="text-[#FF0000] text-4xl" />
+        </button>
+        <button onClick={handleUpdateData} disabled={loadingUpdateData}>
           <FiSave className="text-green-600 text-3xl" />
         </button>
       </div>

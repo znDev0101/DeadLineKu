@@ -141,7 +141,11 @@ const Home = () => {
     }
     try {
       setLoading(true)
-      toast.loading("Loading....")
+      const loadingNotification = toast.loading("Loading....", {
+        position: "top-center",
+        theme: "light",
+        transition: Bounce,
+      })
       const response = await fetch(
         "https://deadline-ku-api.vercel.app/api/timer",
         {
@@ -154,15 +158,19 @@ const Home = () => {
       )
       const resultPost = await response.json()
       setDataPost(resultPost)
-      toast.success("insert data berhasil", {
+
+      toast.update(loadingNotification, {
+        render: "Insert Data berhasil",
         position: "top-center",
-        autoClose: 2000,
+        type: "success",
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
         theme: "light",
+        isLoading: false,
         transition: Bounce,
       })
     } catch (error) {
