@@ -5,16 +5,14 @@ import { MyContext } from "../../context/MyContext"
 const TimeDeadLine = () => {
   const {
     startDeadLine,
-    toggleStartDeadLine,
-    days,
-    setDays,
-    hours,
-    setHours,
-    minutes,
-    setMinutes,
-    seconds,
-    setSeconds,
+    startTimer,
+    handleInputChange,
+    inputTime,
+    formatTime,
+    timeRemaining,
   } = useContext(MyContext)
+
+  const { days, hours, minutes, seconds } = formatTime(timeRemaining)
 
   return (
     <div className="w-full relative">
@@ -31,10 +29,10 @@ const TimeDeadLine = () => {
                   <span
                     className={`text-4xl w-10 ${
                       startDeadLine &&
-                      seconds === "00" &&
-                      minutes === "00" &&
-                      hours === "00" &&
-                      days === "00" &&
+                      inputTime.seconds === "00" &&
+                      inputTime.minutes === "00" &&
+                      inputTime.hours === "00" &&
+                      inputTime.days === "00" &&
                       `text-[#E51E1E]`
                     } `}>
                     {days}
@@ -42,10 +40,11 @@ const TimeDeadLine = () => {
                 </div>
               ) : (
                 <input
-                  type="text"
+                  type="number"
+                  name="days"
                   placeholder="00"
-                  value={days === "00" ? "" : days}
-                  onChange={(e) => setDays(e.target.value)}
+                  value={inputTime.days}
+                  onChange={handleInputChange}
                   className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
                 />
               )}
@@ -58,10 +57,10 @@ const TimeDeadLine = () => {
                   <span
                     className={`text-4xl w-10 ${
                       startDeadLine &&
-                      seconds === "00" &&
-                      minutes === "00" &&
-                      hours === "00" &&
-                      days === "00" &&
+                      inputTime.seconds === "00" &&
+                      inputTime.minutes === "00" &&
+                      inputTime.hours === "00" &&
+                      inputTime.days === "00" &&
                       `text-[#E51E1E]`
                     } `}>
                     {hours}
@@ -69,10 +68,11 @@ const TimeDeadLine = () => {
                 </div>
               ) : (
                 <input
-                  type="text"
+                  type="number"
+                  name="hours"
                   placeholder="00"
-                  value={hours === "00" ? "" : hours}
-                  onChange={(e) => setHours(e.target.value)}
+                  value={inputTime.hours}
+                  onChange={handleInputChange}
                   className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
                 />
               )}
@@ -87,10 +87,10 @@ const TimeDeadLine = () => {
                   <span
                     className={`text-4xl   ${
                       startDeadLine &&
-                      seconds === "00" &&
-                      minutes === "00" &&
-                      hours === "00" &&
-                      days === "00" &&
+                      inputTime.seconds === "00" &&
+                      inputTime.minutes === "00" &&
+                      inputTime.hours === "00" &&
+                      inputTime.days === "00" &&
                       `text-[#E51E1E]`
                     } `}>
                     {minutes}
@@ -98,10 +98,11 @@ const TimeDeadLine = () => {
                 </div>
               ) : (
                 <input
-                  type="text"
+                  type="number"
                   placeholder="00"
-                  value={minutes === "00" ? "" : minutes}
-                  onChange={(e) => setMinutes(e.target.value)}
+                  name="minutes"
+                  value={inputTime.minutes}
+                  onChange={handleInputChange}
                   className=" text-center w-10 text-4xl bg-transparent focus-within:outline-none"
                 />
               )}
@@ -114,10 +115,10 @@ const TimeDeadLine = () => {
                   <span
                     className={`text-4xl    ${
                       startDeadLine &&
-                      seconds === "00" &&
-                      minutes === "00" &&
-                      hours === "00" &&
-                      days === "00" &&
+                      inputTime.seconds === "00" &&
+                      inputTime.minutes === "00" &&
+                      inputTime.hours === "00" &&
+                      inputTime.days === "00" &&
                       `text-[#E51E1E]`
                     } `}>
                     {seconds}
@@ -125,11 +126,12 @@ const TimeDeadLine = () => {
                 </div>
               ) : (
                 <input
-                  type="text"
+                  type="number"
                   placeholder="00"
-                  value={seconds === "00" ? "" : seconds}
-                  onChange={(e) => setSeconds(e.target.value)}
-                  className={` text-center w-10 bg-transparent text-4xl  focus-within:outline-none  `}
+                  name="seconds"
+                  value={inputTime.seconds}
+                  onChange={handleInputChange}
+                  className={`text-center w-10 bg-transparent text-4xl  focus-within:outline-none  `}
                 />
               )}
 
@@ -141,7 +143,7 @@ const TimeDeadLine = () => {
           className={`mx-auto text-4xl hover:cursor-pointer ${
             startDeadLine && "hidden"
           }`}
-          onClick={toggleStartDeadLine}
+          onClick={startTimer}
         />
       </div>
     </div>
