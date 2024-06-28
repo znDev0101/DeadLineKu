@@ -56,7 +56,7 @@ const Home = () => {
         transition: Bounce,
       })
       const response = await fetch(
-        "hhttps://deadline-ku-api.vercel.app/api/timer",
+        "https://deadline-ku-api.vercel.app/api/timer",
         {
           method: "POST",
           headers: {
