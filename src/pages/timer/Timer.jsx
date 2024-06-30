@@ -1,4 +1,3 @@
-import axios from "axios"
 import React, { useState, useEffect } from "react"
 import { FaPlus } from "react-icons/fa6"
 import { IoLinkSharp } from "react-icons/io5"
@@ -7,6 +6,9 @@ import NoteTimer from "../../components/notetimer/NoteTimer"
 import TableTimer from "../../components/tabletimer/TableTimer"
 import { ToastContainer } from "react-toastify"
 import TimerDeadline from "../../components/timerDeadline/TimerDeadline"
+import { toast, Bounce } from "react-toastify"
+
+import "react-toastify/dist/ReactToastify.css"
 
 const Timer = () => {
   const { id } = useParams()
@@ -66,6 +68,21 @@ const Timer = () => {
     }
   }
 
+  const handleBagikan = () => {
+    navigator.clipboard.writeText(location.href)
+    toast.success("bagikan link berhasil di copy", {
+      position: "top-center",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    })
+  }
+
   return (
     <>
       <header className="flex justify-between px-4 py-3">
@@ -73,7 +90,9 @@ const Timer = () => {
           <FaPlus />
           <h1 className="font-bold ">HALAMAN BARU</h1>
         </div>
-        <div className="flex items-center gap-x-2 hover:cursor-pointer">
+        <div
+          className="flex items-center gap-x-2 hover:cursor-pointer"
+          onClick={handleBagikan}>
           <IoLinkSharp />
           <h1 className="font-bold">BAGIKAN LINK</h1>
         </div>

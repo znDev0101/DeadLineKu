@@ -2,7 +2,7 @@ import "./App.css"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Root from "./routes/Root"
 import Timer from "./pages/timer/Timer"
-import NoteTimer from "./components/notetimer/NoteTimer"
+import NewPage from "./pages/newpage/NewPage"
 
 function App() {
   const router = createBrowserRouter([
@@ -15,8 +15,8 @@ function App() {
       element: <Timer />,
     },
     {
-      path: "/:test",
-      element: <Timer />,
+      path: "/newpage",
+      element: <NewPage />,
     },
   ])
 

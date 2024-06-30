@@ -17,7 +17,9 @@ const Header = () => {
       minutes !== "00" ||
       seconds !== "00"
     ) {
-      navigator.clipboard.writeText(location.href + dataPost._id)
+      navigator.clipboard.writeText(
+        location.href.replace("newpage", "") + dataPost._id
+      )
       toast.success("bagikan link berhasil di copy", {
         position: "top-center",
         autoClose: 4000,
@@ -36,7 +38,7 @@ const Header = () => {
 
   return (
     <header className="flex justify-between px-4 py-3">
-      <Link to={"/"} target="_blank">
+      <Link to={"/newpage"} target="_blank">
         <div className="flex items-center gap-x-2 hover:cursor-pointer">
           <FaPlus />
           <h1 className="font-bold ">HALAMAN BARU</h1>

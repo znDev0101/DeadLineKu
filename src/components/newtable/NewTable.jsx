@@ -18,8 +18,7 @@ const NewTable = ({ index, namaAkunRef }) => {
 
   const [isClickDone, setIsClickDone] = useState(false)
 
-  const { startDeadLine, seconds, minutes, hours, day, resetPage } =
-    useContext(MyContext)
+  const { startDeadLine, seconds, minutes, hours, day } = useContext(MyContext)
 
   const handleDeleteNoPembayaran = () => {
     if (noPembayaran.length !== 0 || namaAkun.length !== 0) {
@@ -55,13 +54,6 @@ const NewTable = ({ index, namaAkunRef }) => {
       })
     }
   }
-
-  useEffect(() => {
-    if (resetPage) {
-      setNamaAkun("")
-      setNoPembayaran("")
-    }
-  }, [resetPage])
 
   return (
     <>

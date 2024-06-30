@@ -1,16 +1,17 @@
 import React, { useEffect, useState, useRef } from "react"
-import Header from "../../components/header/Header"
-import TimeDeadLine from "../../components/timedeadline/TimeDeadLine"
 
-import TableAccount from "../../components/tableAccount/TableAccount"
+import Header from "../../components/header/Header"
 import Note from "../../components/note/Note"
+import TimeDeadLine from "../../components/timedeadline/TimeDeadLine"
+import TableAccount from "../../components/tableAccount/TableAccount"
+
 import { toast, Bounce } from "react-toastify"
 
 import "react-toastify/dist/ReactToastify.css"
 
 import { MyContext } from "../../context/MyContext"
 
-const Home = () => {
+const NewPage = () => {
   const [startDeadLine, setStartDeadLine] = useState(false)
   const [id, setId] = useState("")
 
@@ -193,9 +194,7 @@ const Home = () => {
       }, 1000)
       return () => clearInterval(timer)
     }
-  }, [dataPost])
-
-  console.log(namaJobs)
+  }, [id])
 
   return (
     <MyContext.Provider
@@ -229,4 +228,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default NewPage

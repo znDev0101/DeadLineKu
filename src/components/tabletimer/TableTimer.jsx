@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import TableNamaAkunTimer from "../tablenamaakuntimer/TableNamaAkunTimer"
 import TableNoPembayaranTimer from "../tablenopembayarantimer/TableNoPembayaranTimer"
-import { MdOutlineContentCopy } from "react-icons/md"
-import { toast, Bounce, ToastContainer } from "react-toastify"
+import { MdOutlineContentCopy, MdDoneOutline } from "react-icons/md"
+import { toast, Bounce } from "react-toastify"
 
 import "react-toastify/dist/ReactToastify.css"
 
@@ -47,8 +47,8 @@ const TableTimer = ({ data }) => {
   }
 
   return (
-    <>
-      <div className="grid grid-cols-[max-content_.78fr_1fr] items-center px-2">
+    <div className="w-full px-2">
+      <div className="grid grid-cols-[max-content_.78fr_1fr] items-center">
         <h5 className="border border-black bg-black text-white px-2 py-1">
           No
         </h5>
@@ -58,14 +58,17 @@ const TableTimer = ({ data }) => {
         <h5 className="border border-black bg-black text-white px-1 py-1">
           NOMOR PEMBAYARAN
         </h5>
-        <div className="flex flex-col items-center justify-center">
+      </div>
+      <div className="grid grid-cols-[max-content_.78fr_1fr] items-center">
+        <div>
           {data.namaakun?.map((data, i) => {
             return (
-              <h5
-                key={i}
-                className="border border-black h-28 px-4 flex justify-center items-center">
-                {i + 1}
-              </h5>
+              <div
+                className="flex flex-col gap-y-2 border border-black h-28 px-4 justify-center items-center"
+                key={i}>
+                <h5>{i + 1}</h5>
+                <MdDoneOutline />
+              </div>
             )
           })}
         </div>
@@ -100,6 +103,7 @@ const TableTimer = ({ data }) => {
           })}
         </div>
       </div>
+
       <div className="w-[96vw] mx-auto py-2 mb-4 bg-[#26BC00] rounded-b-xl">
         <div className="flex justify-end items-center gap-x-2 text-white pe-2">
           <span className="font-bold">SALIN SEMUA</span>
@@ -109,7 +113,7 @@ const TableTimer = ({ data }) => {
           />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
