@@ -13,7 +13,6 @@ import { MyContext } from "../../context/MyContext"
 
 const NewPage = () => {
   const [startDeadLine, setStartDeadLine] = useState(false)
-  const [id, setId] = useState("")
 
   const [timeRemaining, setTimeRemaining] = useState(0)
   const [inputTime, setInputTime] = useState({
@@ -118,7 +117,6 @@ const NewPage = () => {
         const resultPost = await response.json()
 
         setDataPost(resultPost)
-        setId(resultPost._id)
         setTimeRemaining(endTime - new Date())
 
         toast.update(loadingId, {
@@ -194,7 +192,7 @@ const NewPage = () => {
       }, 1000)
       return () => clearInterval(timer)
     }
-  }, [id])
+  }, [dataPost])
 
   return (
     <MyContext.Provider
